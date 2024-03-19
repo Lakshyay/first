@@ -1,0 +1,121 @@
+Apache Kafka
+------------
+
+Lex Link: https://lex.infosysapps.com/web/en/app/toc/lex_17419036378635820000/overview
+Scala IDE: http://scala-ide.org/download/sdk.html
+Mindmap: https://whimsical.com/apache-kafka-8c1n12GWyavRYujWSt1yEP
+Confluent cloud: http://confluent.cloud/
+Book: kafka the definitive guide 2nd edition pdf
+Playground: https://lex.infosysapps.com/web/en/app/toc/lex_auth_013380996309508096535/overview
+
+Videos:
+Data Streaming: https://youtu.be/Sgrks7ssGOA
+Kafka 101: https://youtube.com/playlist?list=PLa7VYi0yPIH0KbnJQcMv5N9iW8HkZHztH
+
+Day1: Why Kafka, Introduction, Case study, Producers
+Day2: Streams, Consumers, More
+
+Basic Commands in Kafka
+-----------------------
+--configuration
+echo $KAFKA_HOME
+ls $KAFKA_HOME/config
+cat $KAFKA_HOME/config/zookeeper.properties
+cat $KAFKA_HOME/config/server.properties
+cat $KAFKA_HOME/config/server1.properties
+ls -l /tmp/kafka-logs-2
+cat ~/.bashrc
+
+--start zookeeper
+zookeeper-server-start.sh config/zookeeper.properties
+
+--start the kafka server
+kafka-server-start.sh $KAFKA_HOME/config/server.properties
+kafka-server-start.sh $KAFKA_HOME/config/server1.properties
+
+--list topics
+kafka-topics.sh --list --zookeeper localhost:2181
+
+--create topic
+kafka-topics.sh --create --topic DemoTopic1 --partitions 1 --replication-factor 1 --zookeeper localhost:2181
+
+--display the details
+kafka-topics.sh --describe --zookeeper localhost:2181
+kafka-topics.sh --describe --zookeeper localhost:2181 --topic DemoTopic1
+
+--delete topic
+kafka-topics.sh --zookeeper localhost:2181 --delete  --topic DemoTopic1
+
+--publish messages
+kafka-console-producer.sh --broker-list localhost:9092 --topic DemoTopic1
+kafka-console-producer.sh --broker-list localhost:9092 --topic DemoTopic1 --property "parse.key=true" --property "key.separator=,"
+
+--consume messages
+kafka-console-consumer.sh --zookeeper localhost:2181 --topic DemoTopic1 --from-beginning
+kafka-console-consumer.sh --zookeeper localhost:2181 --topic DemoTopic1
+kafka-console-consumer.sh --zookeeper localhost:2181 --topic DemoTopic1 --group mygroup1
+
+--consumer groups
+kafka-consumer-groups.sh --zookeeper localhost:2181 --list
+kafka-consumer-groups.sh --zookeeper localhost:2181 --describe --group mygroup1
+
+
+--zookeeper
+zookeeper-shell.sh localhost:2181
+ls /
+ls /brokers
+ls /brokers/ids
+ls /brokers/topics
+get /controller
+
+Using Producer API
+------------
+kafka-topics.sh --zookeeper localhost:2181 --delete  --topic YouBuyyClickStreamData
+kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic YouBuyyClickStreamData
+kafka-topics.sh --describe --zookeeper localhost:2181 --topic  YouBuyyClickStreamData
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic YouBuyyClickStreamData --from-beginning
+
+--assembly:single
+java -jar <jar file name> <arg1> 					<arg2> 					...
+java -jar ProducerApp.jar ClickStreamMasterData.csv YouBuyyClickStreamData
+
+
+Using Stream API
+----------------
+
+kafka-topics.sh --zookeeper localhost:2181 --delete  --topic CleansedYouBuyyClickStreamData
+kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic CleansedYouBuyyClickStreamData
+kafka-topics.sh --describe --zookeeper localhost:2181 --topic  CleansedYouBuyyClickStreamData
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic CleansedYouBuyyClickStreamData --from-beginning
+
+--assembly:single
+java -jar StreamingApp.jar YouBuyyClickStreamData CleansedYouBuyyClickStreamData
+
+Using Consumer API
+------------------
+
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic CleansedYouBuyyClickStreamData --from-beginning
+--assembly:single
+java -jar ConsumerApp.jar CleansedYouBuyyClickStreamData
+
+MySQL to Kafka
+--------------
+
+mysql --user=root --password=Infy@123
+mysql>use YouBuyy;
+mysql>select * from YouBuyy.StoreData;
+
+kafka-topics.sh --zookeeper localhost:2181 --delete  --topic MySQLStoreData
+kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic MySQLStoreData
+
+java -jar MySQLApp2.jar
+
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic MySQLStoreData --from-beginning
+
+**********************
+role of zookeeper in apache kafka
+Traditional Role of ZooKeeper in Apache Kafka (pre-KRaft):
+Cluster Coordination: ZooKeeper was used for managing the overall cluster state, including the detection of broker failures and leader election for partitions. Kafka brokers register themselves in ZooKeeper, and clients (producers and consumers) can discover the list of active brokers from ZooKeeper.
+Topic and Partition Metadata: ZooKeeper stores metadata about Kafka topics and partitions. This includes information about the leader for each partition, the ISR (In-Sync Replicas), and other configuration details. Kafka clients consult ZooKeeper to fetch this metadata.
+Controller Election: Kafka brokers elect a controller among themselves using ZooKeeper. The controller is responsible for leadership changes, partition reassignment, and other administrative tasks.
+Quota Management: Kafka uses ZooKeeper to manage quotas for producers and consumers.

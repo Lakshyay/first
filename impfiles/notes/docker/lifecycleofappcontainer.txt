@@ -1,0 +1,66 @@
+
+
+Life cycle of Application Containerization
+Objective:
+To create Life cycle of an application being containerized using Docker.
+Step1: Downloading container image from the store
+Login to the Linux EC2 instance and type the below command to download
+the image from the store.
+docker image pull ubuntu:16.04
+Step2: Create a Container
+To create a container from a Docker image, run command is used.
+docker container run -it --name mycontainer ubuntu:16.04 /bin/bash
+If the version is not mentioned, Docker engine assumes it to be the latest,
+the Docker daemon builds new container out of the image.
+Press ctrl+pq to toggle back to the Docker host from the container.
+The Docker container gets created and it can be verified through the
+command,
+docker container ls
+Step3: Connecting to the container
+Now, in-order to access the file system of a container which has been started
+type the below command from the Docker host.
+docker attach cef17af4dd45
+Step4: Installing packages into the container
+Install a software package figlet into the container.
+Before that, update the container using the command,
+apt-get update
+Then execute,
+apt-get install figlet
+to install the figlet software.
+The above installation can be verified as below.
+Step5: Building an image from a container:
+Now, the customization to the container is done through the installation of
+figlet software.
+You can convert this customization into an image which can be later reused.
+To do so, come out of the container by executing the command,
+exit
+Then type,
+docker container commit cef17af4dd45
+This builds a new image from the container.
+The above process is successful if you can see the image in the output while
+implementing the command,
+docker image ls
+Step6: Tag the image
+The image that got created may not have any tag associated, tagging the
+image is essential.
+Hence type,
+docker image tag 15739ab73ee4 figletimage:latest
+Again, you can verify this tagging through the command
+docker image ls
+where you will get to see the image with the tag provided above.
+Step7: Pushing the image into Docker Hub
+Pre-requisite to push the image into Docker Hub is to have Docker account.
+Tag the image based with your Docker login ID for identification. So execute,
+docker image tag figletimage:latest gayathri95/figletimage:latest
+Verify the image through the command,
+docker image ls
+There will be 2 tags for the same image ID.
+After tagging Login to your respective Docker account from the console by the
+command, docker login
+Once the login is successful, push the image into Docker Hub by
+implementing the command,
+docker push gayathri95/figletimage:latest
+This image will be successfully pushed to Docker Hub and can be verified by
+signing into hub.docker.com with your credentials.
+The image that is pushed, can later be pulled into any of your environment to
+work on it.

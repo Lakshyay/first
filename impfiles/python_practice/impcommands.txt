@@ -1,0 +1,11 @@
+Mysql commands for Mac to connect in terminal
+
+1.export PATH=${PATH}:/usr/local/mysql/bin/
+
+2.source ~/.zshrc
+
+3.mysql --version                          
+
+4.mysql -u root -p
+
+

@@ -1,0 +1,83 @@
+
+1
+Demonstration on deploying application into cluster:
+Objective:
+To deploy application into EKS clusters.
+Here, you will create a Kubernetes manifest and deploy it to the cluster created.
+Step1: Create deployment file
+Create a nginx-deployment.yaml on the EC2 instance using editor
+vi nginx-deployment.yaml
+Paste the below content inside it.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: nginx-deployment
+labels:
+app: nginx
+spec:
+replicas: 3
+selector:
+matchLabels:
+app: nginx
+template:
+metadata:
+labels:
+app: nginx
+spec:
+containers:
+- name: nginx
+image: nginx:1.14.2
+ports:
+- containerPort: 80
+In this example:
+The preceding command creates a Deployment object and an associated ReplicaSet
+object. The ReplicaSet has three Pods, each of which runs the nginx application.
+A Deployment named nginx-deployment is created, indicated by the .metadata.name
+field.
+The Deployment creates three replicated Pods, indicated by the .spec.replicas field.
+The .spec.selector field defines how the Deployment finds which Pods to manage.
+The template field contains The Pod template's specification, image name of the
+container etc
+Create the Deployment by running the following command:
+kubectl apply -f nginx-deployment.yaml
+Run kubectl get deployments to check if the Deployment was created.
+kubectl get deployments
+Notice that the Deployment has created all three replicas, and all replicas are up-to-
+date (they contain the latest Pod template) and available.
+To see the Deployment rollout status, run
+kubectl rollout status deployment.v1.apps/nginx-deployment
+To see the ReplicaSet (rs) created by the Deployment, run
+kubectl get rs
+
+Step2: Exposing IP
+Now, we will see how to Create a Service object that exposes an external IP address
+and will Use the Service object to access the running application.
+To Create a Service object that exposes the deployment, execute:
+kubectl expose deployment nginx-deployment --type=LoadBalancer --
+name=my-service
+Display information about the Service:
+kubectl get services my-service
+The LoadBalancer service is created by AWS on behalf
+Note that If the external IP address is shown as <pending>, wait for a minute and
+enter the same command again.
+To view the detailed information about the Service using below command:
+kubectl describe services my-service
+Make a note of the external IP address (LoadBalancer Ingress) exposed by your
+service. Also note the value of Port and NodePort.
+The service has several endpoints, that is the internal addresses of the pods that are
+running the nginx application.
+Step3: View the application
+Now, copy paste the external IP in browser to access the application.
+Ensure the security groups are allowing the traffic to enter.
+Now, you can see that the application is ready and working fine.
+Step4: Clean up
+Let us clean up the resources created.
+To delete the Service, enter the command,
+kubectl delete services my-service
+To delete the Deployment, the ReplicaSet, and the Pods that are running the
+application, enter command:
+kubectl delete deployment nginx-deployment
+To delete the cluster, enter
+eksctl delete cluster --region=us-west-2 --name=eksdemo-cluster
+Summary:
+Thus, you have learnt how to deploy an application in kubernetes cluster.

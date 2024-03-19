@@ -1,0 +1,46 @@
+
+5
+Labguide for API Gateway
+Objective: To develop a REST API where you gain complete control over the
+request and response along with API management capabilities.
+Steps:
+1. Navigate to API Gateway and choose REST API
+In Amazon API Gateway, a REST API refers to a collection of resources and
+methods that can be invoked through HTTPS endpoints.
+2. Click on Import
+3. Click OK
+4. View the sample Pet Store API using Swagger 2.0
+5. Retain Default settings, scroll down and click on Import
+6. Pet Store API details are loaded now
+7. Click on Actions -> Deploy API
+8. Select the Deployment stage as [New Stage] and name it as test
+9. Note down the Invoke URL
+Invoke URL: https://9q81sswzvb.execute-api.ap-south-1.amazonaws.com/test
+10. Access the URL in browser
+The Pet Store API contains the /pets and /pets/{petId} resources. By making a GET request to /pets you can
+retrieve a list of Pets in your API. If you are looking for a specific pet, for example the pet with ID 1, you can
+make a GET request to /pets/1.
+You can use a REST client such as Postman to test the POST methods in your API to create a new pet. Use the
+sample body below to send the POST request:
+{
+"type" : "cat",
+"price" : 123.11
+}
+11. Explore the API calls listed below:
+GET
+/pets
+https://9q81sswzvb.execute-api.ap-south-1.amazonaws.com/test/pets/
+GET
+/pets/1
+https://9q81sswzvb.execute-api.ap-south-1.amazonaws.com/test/pets/1
+GET
+/pets/3
+https://9q81sswzvb.execute-api.ap-south-1.amazonaws.com/test/pets/3
+GET
+/pets/4
+https://9q81sswzvb.execute-api.ap-south-1.amazonaws.com/test/pets/4
+Invoke URL: https://9q81sswzvb.execute-api.ap-south-1.amazonaws.com/test/pets/{petId} can be
+used as a reference for {petid} varying as per the data loaded from backend service
+12. Explore the Dashboard to see the API invocations represented as graphs
+Summary : Develop a REST API where you gain complete control over the request
+and response along with API management capabilities.

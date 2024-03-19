@@ -1,0 +1,103 @@
+----------------------------------------------------------Big Data on AWS - Webinar Notes-------------------------------------------------
+
+Big Data on AWS - https://lex.infosysapps.com/web/en/app/toc/lex_auth_01282529463864524868336/overview
+
+Advanced analytics on AWS - https://lex.infosysapps.com/web/en/app/toc/lex_auth_013345648834101248622/overview
+
+--------------------------------------
+
+Big Data?
+
+VVVV - Volume,Velocity,Variety,Veracity
+
+Big Data system need to handle all the 4 V problems...
+
+Earlier Data analysis was done using Informatica/Ab-Initio : Extract Transform Load (ETL)... 
+
+The tools challanges: 
+- Cost issues, scalability issues, Cannot handle unstructured data, cannot handle PBs of data..
+
+Note : Any data in scale of PB and above is Big Data - (1024 TB = 1 PB)
+
+Solution:
+Big Data using Hadoop and Spark:
+Hadoop - Framework invented by Dough cutting based on Google's white paper..
+
+Hadoop is preferred for Batch analytics...
+
+HDFS - To store data distributed
+MapReduce - To process the data which is distributed across nodes
+
+
+Scenario - Arisco retail -> Collate all sale data in a file (AriscoSale.csv, 2 PB) -> Data gets divided into 'n' number of 128 MB blocks
+Hadoop cluster - 1002 node (1 NN,1 SNN, 1000 DNs)
+
+
+Hadoop Ecosystem - Batch Analysis Tools (Hive(Datawarehouse system, Writing queries for analysis), PIG (Analysis using PIG Latin scriting language))
+
+-----------------------------------------
+
+
+Big Data analytics in Real time on :
+
+-Alibaba:  Click stream analysis -> Store Data in Graph DataBase(Neo4j) -> Click stream analysis-> ML model -> Product Recommendations
+-Netflix: Real time streaming analysis -> 40 billion events(as messages) in Kafka(Messaging system) -> Topic <- Spark streaming analytics algorithm
+-Twitter : 6000 Tweets/second -> Tweets are analysed in real-time
+-Ebay : 2000 Node Hadoop YARN cluster with Spark configured... 50GB RAM/ machine... They do data analytics along with ML for key insights
+
+Note : Netflix use AWS S3 buckets(Cloud Storage) to store the batch data for Batch data analysis
+
+-----------------------------------------
+
+Why Cloud?
+
+Scenario - Team of photographers:
+
+Requirement 1: Application Deployment
+
+1,00,000 - Images -> Store   -> Common storage (AWS S3 buckets)
+
+Build an Python application(Procure an EC2 instance) -> Logic to fetch the metadata from all images -> Store it in a RDBMS system like MySQL 
+or NoSQL DB(DynamoDB)
+
+Requirement 2 - Analysis (OLAP) - Batch + Streaming
+
+- Once the Web application is deployed -> Run analysis against the click stream data -> Store and do analysis
+
+
+For Batch analysis?
+S3 Data -> Analysed using Redshift/Athena+Glue which does batch analysis -> Store results in DynamoDB
+
+
+For streaming analysis?
+
+AWS Kinesis Datastreams and AWS Kinesis Firehose (Deliverystreams) - Connect to different datasources like Twitter, FB Ads,
+YouTube ADs,S3 bucket, GCS bucket... And stream the data to Kinesis analytics underneath
+
+
+For migrating from existing Hadoop/Spark cluster on-premise to AWS?
+
+- EMR : Managed Hadoop and Spark cluster
+
+-----------------------------------------------------
+
+Case study - For real-time analysis:
+
+AWS Kinesis Agent -> AWS Kinesis Datastreams -> AWS Kinesis analytics -> S3 bucket -> AWS Lambda (Fraud detection rules) -> Amazon SNS (Messaging service)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

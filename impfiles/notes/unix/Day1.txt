@@ -1,0 +1,380 @@
+Introduction to Unix:
+https://lex.infosysapps.com/en/app/toc/lex_auth_01265419704839372873/overview
+Unix Playground:
+https://lex.infosysapps.com/en/app/toc/lex_auth_012761083203747840518/overview
+JSLinux:
+https://bellard.org/jslinux/vm.html?cpu=riscv64&url=fedora33-riscv.cfg&mem=256
+Basic Commands:
+https://lex.infosysapps.com/en/viewer/web-module/lex_auth_012651914009821184113?collectionId=lex_auth_01265419704839372873&collectionType=Course
+http://iscls4apps/ITMS/Learning/Index
+-------------------------------------------------------------------------------------------------
+What is Operating System:
+interface btwn the user and computer hardware 
+
+Functions of Operating System:
+1.Memory Management 
+2.Processor Management 
+3.Device Management 
+4.File Management 
+5.Security 
+6.Job Scheduling 
+7.Error Detecting 
+
+Architecture:
+
+History:
+
+Features of Unix:
+1.Multi User - More than 1 user will be able to use it simultaenously 
+2. Multi Tasking - Multiple programs can run at the same time 
+3.Multi Process - execute several process simultaenously
+4.Open source - free source code 
+5.Highly secured 
+6.Portability - allows user to transfer data from 1 system to another 
+7.Programming facility - shell can be used for scripting language 
+8.Piping 
+
+Differences:
+Unix 						Windows 
+Hierarchial file s/m 		Flat file s/m 
+CUI							GUI
+Multi user ,multi tasking	Single User,Multi tasking
+Open Source					Licensed 
+Case sensitive				insensitive 
+Supports programming 		Do not 
+Unix has multiple vendors 	Single Vendor - Micrsoft 
+Solaris - sun 
+Xenix - Micrsoft 
+Linux - redhat 
+
+Architecture of Unix System:
+
+Basic Commands:
+ls - display the content (dir and files)
+ls -a -> gives all including hidden files
+ls -l -> long listing 
+
+Working with directories:
+mkdir dir_name 
+cd dir_name 
+pwd - pressent working dir
+cd .. - navigate to previous dir 
+rmdir dir_name - delete the dir only when it is empty 
+rm -r dir_name - delete the dir when files are present 
+
+Working with files:
+touch filename - create file only 
+cat - create, write,read,append 
+cat > filename - if file is already existing, it will be over written 
+if not existing, it will be created 
+cat < filename / cat filename 
+cat >> filename 
+rm filename - to remove the file 
+
+to close : 
+ctrl+ D / ctrl + C
+
+vi - create,write and edit 
+vi filename 
+click on insert button 
+esc + :wq - write and quit 
+to read the content again 
+cat filename 
+
+[er1118220@BL1UL056 Unix_Lex]$ ls
+case.sh  drawing  empname~  Emp_name  example.sh  for1.sh  for.sh  ifelse.sh  if.sh  music  new  while.sh
+[er1118220@BL1UL056 Unix_Lex]$ mkdir Aug_22
+[er1118220@BL1UL056 Unix_Lex]$ cd Aug_22
+[er1118220@BL1UL056 Aug_22]$ touch file1.txt
+[er1118220@BL1UL056 Aug_22]$ ls
+file1.txt
+[er1118220@BL1UL056 Aug_22]$ cat > file1.txt
+hi
+hello
+[er1118220@BL1UL056 Aug_22]$ ls
+file1.txt
+[er1118220@BL1UL056 Aug_22]$ cat file1.txt
+hi
+hello
+[er1118220@BL1UL056 Aug_22]$ cat > file1.txt
+today is day1
+[er1118220@BL1UL056 Aug_22]$ cat file1.txt
+today is day1
+[er1118220@BL1UL056 Aug_22]$ cat > file2.txt
+hello
+[er1118220@BL1UL056 Aug_22]$ cat file2.txt
+hello
+[er1118220@BL1UL056 Aug_22]$ cat >> file2.txt
+day1 session
+[er1118220@BL1UL056 Aug_22]$ cat file2.txt
+hello
+day1 session
+[er1118220@BL1UL056 Aug_22]$ vi file2.txt
+[er1118220@BL1UL056 Aug_22]$ vi file2.txt
+[er1118220@BL1UL056 Aug_22]$ cat file2.txt
+hello
+on aug -11
+day1 session
+[er1118220@BL1UL056 Aug_22]$ ls
+file1.txt  file2.txt
+[er1118220@BL1UL056 Aug_22]$ rm file1.txt
+[er1118220@BL1UL056 Aug_22]$ ls
+file2.txt
+
+Man command:
+reference manual 
+to quit - press key "q"
+man <command>
+
+cal command:
+to print calender of the current month 
+cal -m - to print monday as first day 
+-s - to print sunday as fisrt day 
+-3 - print prev/curr/next month 
+-y - year 
+
+Req: Print 3 months with monday as first day 
+
+
+[er1118220@BL1UL056 Aug_22]$ cal
+     August 2022
+Su Mo Tu We Th Fr Sa
+    1  2  3  4  5  6
+ 7  8  9 10 11 12 13
+14 15 16 17 18 19 20
+21 22 23 24 25 26 27
+28 29 30 31
+
+[er1118220@BL1UL056 Aug_22]$ cal 23 05 1998
+      May 1998
+Su Mo Tu We Th Fr Sa
+                1  2
+ 3  4  5  6  7  8  9
+10 11 12 13 14 15 16
+17 18 19 20 21 22 23
+24 25 26 27 28 29 30
+31
+[er1118220@BL1UL056 Aug_22]$ cal 05 1998
+      May 1998
+Su Mo Tu We Th Fr Sa
+                1  2
+ 3  4  5  6  7  8  9
+10 11 12 13 14 15 16
+17 18 19 20 21 22 23
+24 25 26 27 28 29 30
+31
+[er1118220@BL1UL056 Aug_22]$ cal 06 1998
+      June 1998
+Su Mo Tu We Th Fr Sa
+    1  2  3  4  5  6
+ 7  8  9 10 11 12 13
+14 15 16 17 18 19 20
+21 22 23 24 25 26 27
+28 29 30
+
+[er1118220@BL1UL056 Aug_22]$ cal -3
+      July 2022            August 2022         September 2022
+Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
+                1  2      1  2  3  4  5  6               1  2  3
+ 3  4  5  6  7  8  9   7  8  9 10 11 12 13   4  5  6  7  8  9 10
+10 11 12 13 14 15 16  14 15 16 17 18 19 20  11 12 13 14 15 16 17
+17 18 19 20 21 22 23  21 22 23 24 25 26 27  18 19 20 21 22 23 24
+24 25 26 27 28 29 30  28 29 30 31           25 26 27 28 29 30
+31
+[er1118220@BL1UL056 Aug_22]$ cal -m
+     August 2022
+Mo Tu We Th Fr Sa Su
+ 1  2  3  4  5  6  7
+ 8  9 10 11 12 13 14
+15 16 17 18 19 20 21
+22 23 24 25 26 27 28
+29 30 31
+
+[er1118220@BL1UL056 Aug_22]$ cal -s
+     August 2022
+Su Mo Tu We Th Fr Sa
+    1  2  3  4  5  6
+ 7  8  9 10 11 12 13
+14 15 16 17 18 19 20
+21 22 23 24 25 26 27
+28 29 30 31
+
+[er1118220@BL1UL056 Aug_22]$ cal -y
+                               2022
+
+       January               February                 March
+Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa
+                   1          1  2  3  4  5          1  2  3  4  5
+ 2  3  4  5  6  7  8    6  7  8  9 10 11 12    6  7  8  9 10 11 12
+ 9 10 11 12 13 14 15   13 14 15 16 17 18 19   13 14 15 16 17 18 19
+16 17 18 19 20 21 22   20 21 22 23 24 25 26   20 21 22 23 24 25 26
+23 24 25 26 27 28 29   27 28                  27 28 29 30 31
+30 31
+        April                   May                   June
+Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa
+                1  2    1  2  3  4  5  6  7             1  2  3  4
+ 3  4  5  6  7  8  9    8  9 10 11 12 13 14    5  6  7  8  9 10 11
+10 11 12 13 14 15 16   15 16 17 18 19 20 21   12 13 14 15 16 17 18
+17 18 19 20 21 22 23   22 23 24 25 26 27 28   19 20 21 22 23 24 25
+24 25 26 27 28 29 30   29 30 31               26 27 28 29 30
+
+        July                  August                September
+Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa
+                1  2       1  2  3  4  5  6                1  2  3
+ 3  4  5  6  7  8  9    7  8  9 10 11 12 13    4  5  6  7  8  9 10
+10 11 12 13 14 15 16   14 15 16 17 18 19 20   11 12 13 14 15 16 17
+17 18 19 20 21 22 23   21 22 23 24 25 26 27   18 19 20 21 22 23 24
+24 25 26 27 28 29 30   28 29 30 31            25 26 27 28 29 30
+31
+       October               November               December
+Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa
+                   1          1  2  3  4  5                1  2  3
+ 2  3  4  5  6  7  8    6  7  8  9 10 11 12    4  5  6  7  8  9 10
+ 9 10 11 12 13 14 15   13 14 15 16 17 18 19   11 12 13 14 15 16 17
+16 17 18 19 20 21 22   20 21 22 23 24 25 26   18 19 20 21 22 23 24
+23 24 25 26 27 28 29   27 28 29 30            25 26 27 28 29 30 31
+
+who command:
+who -m - display all user info
+who -a - display all user info of all the users logged in 
+-H - info with headings 
+-q - username and no.of users logged in 
+
+display the users who have remotely logged into unix 
+[er1118220@BL1UL056 Aug_22]$ who
+er1118220 pts/1        2022-08-16 10:31 (10.110.46.201)
+[er1118220@BL1UL056 Aug_22]$ who -a
+           system boot  2022-03-30 15:47
+           run-level 5  2022-03-30 15:47
+           pts/0        2022-08-16 11:26           2256687 id=ts/0  term=0 exit=0
+           pts/2        2022-08-10 14:50           2119246 id=ts/2  term=0 exit=0
+           pts/3        2022-08-03 11:35           1940565 id=ts/3  term=0 exit=0
+           pts/4        2022-08-02 12:17           1914084 id=ts/4  term=0 exit=0
+           pts/5        2022-07-13 11:43           1342335 id=ts/5  term=0 exit=0
+           pts/6        2022-07-13 11:37           1342724 id=ts/6  term=0 exit=0
+er1118220 + pts/1        2022-08-16 10:31   .       2256335 (10.110.46.201)
+[er1118220@BL1UL056 Aug_22]$ who -m
+er1118220 pts/1        2022-08-16 10:31 (10.110.46.201)
+[er1118220@BL1UL056 Aug_22]$ who -H
+NAME     LINE         TIME             COMMENT
+er1118220 pts/1        2022-08-16 10:31 (10.110.46.201)
+[er1118220@BL1UL056 Aug_22]$ who -q
+er1118220
+# users=1
+
+Date command:
+print the current date in predefined format 
+date +"%options"
+Req: August/16-2022
+
+%a- weekday name - Sun 
+%A - Sunday 
+%b - month name - Jan 
+%B - January 
+%c - both date and time 
+%C - century 
+%d - day of the month -01....31 
+%m - month -01...12
+%y - last 2 digits of the year - 98,99
+%Y -1998,1999,2000
+%H - hours in 24hr format 00....23
+%I - hours in 12 hr format 00....12
+%M - minutes 00....59
+%S -seconds 
+%x - same as %d:%m:%y
+%T - same as %H:%M:%S 
+[er1118220@BL1UL056 Aug_22]$ date
+Tue Aug 16 12:06:25 IST 2022
+[er1118220@BL1UL056 Aug_22]$ date +"%B"
+August
+[er1118220@BL1UL056 Aug_22]$ date +"%d"
+16
+[er1118220@BL1UL056 Aug_22]$ date +"%Y"
+2022
+[er1118220@BL1UL056 Aug_22]$ date +"%B%d%Y"
+August162022
+[er1118220@BL1UL056 Aug_22]$ date +"%B/%d%Y"
+August/162022
+[er1118220@BL1UL056 Aug_22]$ date +"%B/%d-%Y"
+August/16-2022
+
+uname command:
+to print the operating s/m info 
+[er1118220@BL1UL056 Aug_22]$ uname
+Linux
+[er1118220@BL1UL056 Aug_22]$ uname -o
+GNU/Linux
+[er1118220@BL1UL056 Aug_22]$ uname -p
+x86_64
+[er1118220@BL1UL056 Aug_22]$ uname -s
+Linux
+[er1118220@BL1UL056 Aug_22]$ uname -n
+BL1UL056
+[er1118220@BL1UL056 Aug_22]$ uname -v
+#2 SMP Fri Oct 8 16:23:01 PDT 2021
+[er1118220@BL1UL056 Aug_22]$ uname -r
+5.4.17-2136.300.7.el8uek.x86_64
+
+echo command:
+to display any information on the terminal 
+\n 
+-e - used to interpret \n
+-n - ued to give the oputput in the same line 
+[er1118220@BL1UL056 Aug_22]$ echo "Hello"
+Hello
+[er1118220@BL1UL056 Aug_22]$ echo "Hi.\nHello"
+Hi.\nHello
+[er1118220@BL1UL056 Aug_22]$ echo -e "Hi.\nHello"
+Hi.
+Hello
+[er1118220@BL1UL056 Aug_22]$ echo -n "Hi.\nHello"
+Hi.\nHello[er1118220@BL1UL056 Aug_22]$ echo -ne "Hi.\nHello"
+Hi.
+
+bc command:
+arbitratry calculator 
+Hello[er1118220@BL1UL056 Aug_22]$ bc
+bc 1.07.1
+Copyright 1991-1994, 1997, 1998, 2000, 2004, 2006, 2008, 2012-2017 Free Software Foundation, Inc.
+This is free software with ABSOLUTELY NO WARRANTY.
+For details type `warranty'.
+12+12
+24
+13*5
+65
+12+12;34/5
+24
+6
+scale=2
+10/3
+3.33
+scale=4
+10/3
+3.3333
+
+tty command:
+print terminal info 
+
+which command:
+print information path in which command/software is installed 
+[er1118220@BL1UL056 Aug_22]$ which mkdir
+/usr/bin/mkdir
+[er1118220@BL1UL056 Aug_22]$ which python
+/usr/local/lib64/anaconda3/bin/python
+[er1118220@BL1UL056 Aug_22]$
+
+cat command:
+-n - to number all output lines 
+-s - supress repeated empty lines 
+-b  to number nonempty lines 
+
+wc command:word count 
+wc -l - print line counts
+-w - word count 
+-c - byte count 
+-m - character count 
+
+Pipelining:
+echo "Hello Dhana" | wc -l 
+
+

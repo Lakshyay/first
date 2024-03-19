@@ -1,0 +1,472 @@
+							Bootstrap						Date: 30-11-2022
+
+Bootstrap Course:
+
+Course Name in Lex: Creating Responsive Web Pages using Bootstrap 4
+--------------------------------------------------------------------
+Course Contents: (TOC)
+---------------------------
+Need of Bootstrap
+Bootstrap features
+Getting started
+Container classes
+Grid system
+Typography
+
+Tables
+Images
+Cards
+Jumbotron
+UI Components and Types
+
+Navigation bar
+Form group
+Form layouts
+
+----------------------------------------------------------------------------------
+Course Link:   
+https://lexfp.onwingspan.com/en/app/toc/lex_10096720378773369000_shared/overview/
+----------------------------------------------------------------------------------
+
+									Bootstrap
+	- Developed by Twitter.
+	- Open source - Quickly we can develop web pages
+	- Bootstrap includes HTML and CSS templates.
+	- Responsive Web Design - using built in components.
+
+CSS frameworks: Bootstrap, Skeleton, Foundation etc.........
+
+Need of Bootstrap:
+		
+		Disadvantages of CSS:
+			- Level of compatibility varies with browsers
+				( Some CSS features are not supported by all browsers)
+			- As the enterprise application grows it will be Difficult to maintain all css files.
+
+
+Bootstrap features:
+	- 
+
+Getting started:
+		- Download "bootstrap.css" file from lex and place it into css folder.
+
+Container classes:
+			
+	1. container class: Provides the full width responsive container based on the size of the screen.
+	2. Container-fluid class: Provides the full width responsive container entire width of the screen.
+
+
+Grid system:
+	- bootstrap web page can be divided rows and columns. 
+	- Each row is divided into 12 columns.
+
+	Row:
+	-To Create a row -> Use "row" class
+	
+  Column:
+		
+	The bootstrap gridsystem has 5 classes:
+	class name					Description
+	1. .col					Extra small devices - screen width < 576px.
+	2. .col-sm	-				Small devices - Screen width >= 576 px
+	3. .col-md-				Medium devices - Screen Width >= 768 px
+	4. .col-lg- 				Large devices  - 					>= 992 px
+	5. .col-xl- 				Extra Large devices 				>=1200 px
+
+Table: Bootstrap grid system - Works across multiple devices with
+
+					Extra small 	Small		Medium		Large	Extra large
+					<576px	   	≥576px		≥768px		≥992px	≥1200px
+Max container width		None (auto)	540px		720px		960px	1140px
+Class prefix			.col-			.col-sm-		.col-md-		.col-lg-	.col-xl-
+
+Create a column:
+
+		.col-md-3 class  to create a cloumn 
+	
+Grid system overflow and Column Offset:
+
+	1. Overflow - More than 12 cloumns - Overflow 
+
+	2. Offset class:
+		offset-1 class
+
+	3. Layout of multiple devices:
+		- Enables us to design the page for multiple dimesions.  
+		- 
+Typography:
+
+	- To change/modify/format text - bootstrap provides some classes.
+
+	- Typography can be divided in to 4 types.
+	Category 						Description
+	Text size 						These classes and element selectors take care of the font type and sizes. Display-1 Display-2  Dipslay-3 Dipslay-4
+	
+	Text Alignment 				These classes will take care of the alignment of the text 
+
+	Text Emphasis					These classes and element selectors take care of the text font weight and color
+
+	Text Transformation 			These classes will take care of the transform the case of the text. 
+
+
+Table: To format/beautify the table we can use .table and some other table classes provided by Bootstrap.
+
+	
+Images: 
+	classes provided for Images: .rounded, .rounded-circle, .img-thumbnail, img-fluid
+
+
+Cards: 
+	- A card in Boostrap is a bordered box with some padding around the content.
+	- Cards can have header, body and footer.
+	- Various colors: bg-primary, bg-secondary, etc.....
+	- Card title:
+	- for creting the card we have to use class: .card
+	- for creating header, body and footer - .card-header, .card-body and .card-footer respectively.
+	- for tilte: use .card-title class
+	- for adding images: .card-img-top, .card-img-bottom and .card-img-overlay classes along with <img> tag
+	- Card deck: .card-deck 
+	- color:.card bg-light, primary, success, warning etc.... 
+
+
+Jumbotron:
+	- is used to enclose content in a big grey box.
+	- we can style the content inside the jumbotron using another bootstrap classes. 
+	- use .jumbotron class for creating the jumbotron.
+
+UI (User-Interface) Components and Types:
+
+	- UI components are those components using which a user interacts with a webpage.
+		Examples: input fields, text areas, buttons, selct menus etc.
+
+	- Bootstrap provides some classes styling these UI components.
+	- use .form-control class.
+	
+	Radio Buttons and Check Boxes:
+		- To style buttons and check boxes bootstrap provides classes like .form-check
+		- The type attribute input tag specfies the creation of radio button.
+		- Default alignment on using .form-check class creates vertically aligned radio buttons.
+		- The class ".form-control-inline" will create horizontal alignment to the radio buttons.
+.form-check class creates vertically aligned radio buttons. 
+.
+.
+.
+.
+.
+
+".form-control-inline" will create horizontal alignment to the radio buttons.
+ 		. 	.	.	.	.	.	.
+
+
+Buttons: Styling and Sizing
+
+	-Use .btn class along with <button> element.
+	-Block Level Button: 
+		- To crete a block level button - use .btn btn-block class.
+		- Width of button = Width of the parent element.
+
+Badge: 
+	- Badges are indicators for numerical value and are generally used to show how many 
+	  items are there in association with a particular list or link. 
+	- Use .badge class to create a badge.
+	- We can add badge to button, hyperlink and list. 
+
+
+Navigation Bar: (navbar): 
+
+-A navigation bar is a navigation header that placed at the top of the webpage. 
+-HTML5 provides a element called <nav> to create naviation bar.
+- A responsive navbar collapses when viewed on similar screen, expands otherwise.
+-To achieve responsive navbar feature, apart from bootstrap.css, we need bootstrap.js and jquery.js.
+
+classes:
+		navbar-brand:
+			- The brand (Company Name) or logo -> positioned -> top left corner.
+		navbar-toggler: nav - to create toggler button        	
+            					-data-toggle="collape": When the user clicks button it should collapse.
+          navbar-nav :  to properly align links in 1 line
+
+            navbar-light 	:  color of font in navbar: dark
+            navbar-dark 	:  color of font in navbar: light
+
+
+            collapse navbar-collapse : proper styling to the links when collapsed
+		
+            navbar-nav ml-auto:  along with navbar-nav, to align my links at the right hand side of web-page- right alignment.
+
+
+Form group:
+	class: .form-group: Used for proper alignent components in the form
+
+
+Form layout:
+		Align in two ways:
+		1. Vertical form layout  : 
+		2. Horizontal (Inline) form layout: .form-inline class - we get inline alignment of components.
+
+		NOTE: By default Bootstarp provides vertical layout to forms.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bootstrap: CSS Framework
+	- Bootsratp was developed by Twitter 
+		(Built by: Marl Otto and Jacod Thornton)
+	- Bootstrap is HTML, CSS and Javascript frameworkv-> to quickly create responsive webpages using built in components.
+	- RWD : Responsive Web Design: pages automatically adjust accordng to screen sizes or according to different devices.
+
+Need for Bootstrap:
+	- Disadvantages of CSS: Level of compatibility varies with each browser. (No uniform appearance accross browsers)
+	- Enterprise applications - Huge and difficult to maintain.
+			- Diff styling requirements and difficult to manage all styling sheets.
+
+	So because of these reasons we will be using Bootstrap.
+
+
+CSS Framework:
+	- is a package made up of files and folders of standadized CSS code - which makes it easier to create webpages. (Browser compatibility)
+	- Custamization as well.
+
+CSS Frameworks:
+	1. Bootstrap
+	2. Foundaton
+	3. Skeleton
+	4. Bulma
+	5. Materialize CSS
+	...
+
+Bootstrap Features:
+	- RWD: Responsive Web Design
+	- Fluid Layout: Layout grows an shrinks based on the size of the device browser.
+	- Flexible images: Images adapt to the size of the device browser.
+	- Responsiveness: Uses some patterns (any screens)
+	- Easily custamize.
+
+
+Getting Started:
+	- Download a bootstrap.css fle (which contains some predefined classes) 
+	- Copy and paste bootstrap.css your workspace folder.
+	
+
+
+Classes:
+
+1. Container Classes: To place the web content or components in a webpage we need container classes.
+	i) 	.container class
+	ii)	.container-fluid class  
+	
+	i) .container class: Provides fixed width responsive conatiner based on screen or devices.
+	ii) .container-fluid class: Provides full width reponsive conatiner utilizing the full width of the device or browser.
+
+2. Grid System:
+	- Divide screen into 12 equal parts. each part is 8.33333%
+	- Bootstarp webpage is divided in to rows and column grids.
+	- Each row will be having 12 equal columns. 
+	Create container using container classes.
+
+Number  of columns:	12	
+
+The Bootstrap 4 grid system has five classes:
+Class Name 		Description
+.col-				(extra small devices - screen width less than 576px)
+.col-sm- 			(small devices - screen width equal to or greater than 576px)
+.col-md- 			(medium devices - screen width equal to or greater than 768px)
+.col-lg- 			(large devices - screen width equal to or greater than 992px)
+.col-xl- 			(xlarge devices - screen width equal to or greater than 1200px)
+
+
+Table: Bootstrap grid system - Works across multiple devices with
+
+					Extra small 	Small		Medium		Large	Extra large
+					<576px	   	≥576px		≥768px		≥992px	≥1200px
+Max container width		None (auto)	540px		720px		960px	1140px
+Class prefix			.col-			.col-sm-		.col-md-		.col-lg-	.col-xl-
+
+
+
+Create a row : using .row class.
+
+	Container class adjusts row marigin so entire content if the row is visible:
+	Container margin + row margin =  15 px + (-15px) = 0  (visible) 
+
+Create a column: 
+Use col-<sq>-<n> class.
+
+	<sq> - Size qualifier -> lg, md, sm xs
+	<n> -  Number of grids: 12 grids
+
+		1. lg: Large devices with screen width >=1200 px
+		2. md: medium 						<1200 px >=992 px
+		3. sm: small						<992 px >768 px.
+		4. xs: extra small 					<768 px.
+
+
+Grid Overflow and offset:
+
+	1. Overflow: if you have grids more than 12 the content is overflown.
+
+	2. offset: Space betwen columns
+			You can create the space between column or grids using the class .offset<n> 
+	
+	3. Layout of multiple devices:
+			- Enables us to deign pages for different screens or devices of multiple dimensions. 
+		
+
+Typography: 
+	- To modify / format the text (Bootstrap provides some classes)
+	
+	- The classes and element selectors under typography are divided in to 4 types:
+
+	Category
+	Text size			: classes - font size and type  (display-1, display-2, display-3, display-4) - (IMP)
+	Text alignment		: classes - text allingment
+	Text Emphasis		: claases - Font weight and color
+	Text Transformation: classes - Transform the case of the text (upper case, lowercase etc)
+
+Table: To format/beautify the table we can use .table and some other table classes provided by Bootstrap.
+
+	
+Images: 
+	classes provided for Images: .rounded, .rounded-circle, .img-thumbnail, img-fluid
+
+
+Cards: 
+	- A card in Boostrap is a bordered box with some padding around the content.
+	- Cards can have header, body and footer.
+	- Various colors: bg-primary, bg-secondary, etc.....
+	- Card title:
+	- for creting the card we have to use class: .card
+	- for creating header, body and footer - .card-header, .card-body and .card-footer respectively.
+	- for tilte: use .card-title class
+	- for adding images: .card-img-top, .card-img-bottom and .card-img-overlay classes along with <img> tag
+	- Card deck: .card-deck 
+	- color:.card bg-light, primary, success, warning etc.... 
+
+
+Jumbotron:
+	- is used to enclose content in a big grey box.
+	- we can style the content inside the jumbotron using another bootstrap classes. 
+	- use .jumbotron class for creating the jumbotron.
+
+UI (User-Interface) Components and Types:
+
+	- UI components are those components using which a user interacts with a webpage.
+		Examples: input fields, text areas, buttons, selct menus etc.
+
+	- Bootstrap provides some classes styling these UI components.
+	- use .form-control class.
+	
+	Radio Buttons and Check Boxes:
+		- To style buttons and check boxes bootstrap provides classes like .form-check
+		- The type attribute input tag specfies the creation of radio button.
+		- Default alignment on using .form-check class creates vertically aligned radio buttons.
+		- The class ".form-control-inline" will create horizontal alignment to the radio buttons.
+.form-check class creates vertically aligned radio buttons. 
+.
+.
+.
+.
+.
+
+".form-control-inline" will create horizontal alignment to the radio buttons.
+ 		. 	.	.	.	.	.	.
+
+
+Buttons: Styling and Sizing
+
+	-Use .btn class along with <button> element.
+	-Block Level Button: 
+		- To crete a block level button - use .btn btn-block class.
+		- Width of button = Width of the parent element.
+
+Badge: 
+	- Badges are indicators for numerical value and are generally used to show how many 
+	  items are there in association with a particular list or link. 
+	- Use .badge class to create a badge.
+	- We can add badge to button, hyperlink and list. 
+
+
+
+Navigation Bar: (navbar): 
+
+-A navigation bar is a navigation header that placed at the top of the webpage. 
+-HTML5 provides a element called <nav> to create naviation bar.
+- A responsive navbar collapses when viewed on similar screen, expands otherwise.
+-To achieve responsive navbar feature, apart from bootstrap.css, we need bootstrap.js and jquery.js.
+
+classes:
+		navbar-brand:
+			- The brand (Company Name) or logo -> positioned -> top left corner.
+		navbar-toggler: nav - to create toggler button        	
+            					-data-toggle="collape": When the user clicks button it should collapse.
+          navbar-nav :  to properly align links in 1 line
+
+            navbar-light 	:  color of font in navbar: dark
+            navbar-dark 	:  color of font in navbar: light
+
+
+            collapse navbar-collapse : proper styling to the links when collapsed
+		
+            navbar-nav ml-auto:  along with navbar-nav, to align my links at the right hand side of web-page- right alignment.
+
+
+Form group:
+	class: .form-group: User for proper alignent components in the form
+
+
+Form layout:
+		Align in two ways:
+		1. Vertical form layout  : 
+		2. Horizontal (Inline) form layout: . form-inline class - we get inline alignment of components.
+
+		NOTE: By default Bootstarp provides vertical layout to forms.

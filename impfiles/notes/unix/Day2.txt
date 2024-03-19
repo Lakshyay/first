@@ -1,0 +1,541 @@
+Introduction to Unix:
+https://lex.infosysapps.com/en/app/toc/lex_auth_01265419704839372873/overview
+Unix Playground:
+https://lex.infosysapps.com/en/app/toc/lex_auth_012761083203747840518/overview
+JSLinux:
+https://bellard.org/jslinux/vm.html?cpu=riscv64&url=fedora33-riscv.cfg&mem=256
+Text Processing:
+https://lex.infosysapps.com/en/viewer/web-module/lex_auth_01265188170622566499?collectionId=lex_auth_01265419704839372873&collectionType=Course
+------------------------------------------------------------------------------
+Text Processing:
+Tail,Head:
+Tail:
+Ued to list bottom added n records 
+-n - "n" no. of lines 
+-c - no. of bytes 
+-f - follow the changes in the file 
+-s - sleep interval 
+[er1118220@BL1UL056 ~]$ cd public_html/Unix_Lex/Aug_22/
+[er1118220@BL1UL056 Aug_22]$ ls
+file2.txt
+[er1118220@BL1UL056 Aug_22]$ cat > access.log
+10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+10.123.80.65 - User2 [11:10:15]"GET /samsung-Mobile-sam88009/index.html HTTP/1.0"
+10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+10.123.80.65 - User2 [11:10:15]"GET /sony-Laptop-Lap8009/index.html HTTP/1.0"
+10.123.80.65 - User3 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User4 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User5 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User5 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User4 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - Admin [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+[er1118220@BL1UL056 Aug_22]$ tail access.log
+10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+10.123.80.65 - User2 [11:10:15]"GET /samsung-Mobile-sam88009/index.html HTTP/1.0"
+10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+10.123.80.65 - User2 [11:10:15]"GET /sony-Laptop-Lap8009/index.html HTTP/1.0"
+10.123.80.65 - User3 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User4 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User5 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User5 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User4 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - Admin [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+[er1118220@BL1UL056 Aug_22]$ wc -l access.log
+10 access.log
+[er1118220@BL1UL056 Aug_22]$ cat -n access.log
+     1  10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+     2  10.123.80.65 - User2 [11:10:15]"GET /samsung-Mobile-sam88009/index.html HTTP/1.0"
+     3  10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+     4  10.123.80.65 - User2 [11:10:15]"GET /sony-Laptop-Lap8009/index.html HTTP/1.0"
+     5  10.123.80.65 - User3 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+     6  10.123.80.65 - User4 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+     7  10.123.80.65 - User5 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+     8  10.123.80.65 - User5 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+     9  10.123.80.65 - User4 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+    10  10.123.80.65 - Admin [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+[er1118220@BL1UL056 Aug_22]$ tail -n5 acces.log
+tail: cannot open 'acces.log' for reading: No such file or directory
+[er1118220@BL1UL056 Aug_22]$ tail -n5 access.log
+10.123.80.65 - User4 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User5 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User5 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User4 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - Admin [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+[er1118220@BL1UL056 Aug_22]$ tail -5 access.log
+10.123.80.65 - User4 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User5 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User5 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User4 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - Admin [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+[er1118220@BL1UL056 Aug_22]$ tail -c5 access.log
+1.0"
+[er1118220@BL1UL056 Aug_22]$ tail -f -s2 access.log
+10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+10.123.80.65 - User2 [11:10:15]"GET /samsung-Mobile-sam88009/index.html HTTP/1.0"
+10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+10.123.80.65 - User2 [11:10:15]"GET /sony-Laptop-Lap8009/index.html HTTP/1.0"
+10.123.80.65 - User3 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User4 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User5 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User5 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User4 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - Admin [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+
+Head:
+Print top most lines from the file 
+Req: Fetch top 5 lines and store inside a file "product.txt"
+[er1118220@BL1UL056 Aug_22]$ head -n5 access.log
+10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+10.123.80.65 - User2 [11:10:15]"GET /samsung-Mobile-sam88009/index.html HTTP/1.0"
+10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+10.123.80.65 - User2 [11:10:15]"GET /sony-Laptop-Lap8009/index.html HTTP/1.0"
+10.123.80.65 - User3 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+[er1118220@BL1UL056 Aug_22]$ head -n3 access.log
+10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+10.123.80.65 - User2 [11:10:15]"GET /samsung-Mobile-sam88009/index.html HTTP/1.0"
+10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+[er1118220@BL1UL056 Aug_22]$ head -n3 access.log | tail -n1
+10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+[er1118220@BL1UL056 Aug_22]$ head -n6 access.log | tail -n3
+10.123.80.65 - User2 [11:10:15]"GET /sony-Laptop-Lap8009/index.html HTTP/1.0"
+10.123.80.65 - User3 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User4 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+[er1118220@BL1UL056 Aug_22]$ head -n5 access.log
+10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+10.123.80.65 - User2 [11:10:15]"GET /samsung-Mobile-sam88009/index.html HTTP/1.0"
+10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+10.123.80.65 - User2 [11:10:15]"GET /sony-Laptop-Lap8009/index.html HTTP/1.0"
+10.123.80.65 - User3 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+[er1118220@BL1UL056 Aug_22]$ head -n5 access.log | cat > product.txt
+[er1118220@BL1UL056 Aug_22]$ l
+bash: l: command not found...
+[er1118220@BL1UL056 Aug_22]$ ls
+access.log  file2.txt  product.txt
+[er1118220@BL1UL056 Aug_22]$ cat product.txt
+10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+10.123.80.65 - User2 [11:10:15]"GET /samsung-Mobile-sam88009/index.html HTTP/1.0"
+10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+10.123.80.65 - User2 [11:10:15]"GET /sony-Laptop-Lap8009/index.html HTTP/1.0"
+10.123.80.65 - User3 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+[er1118220@BL1UL056 Aug_22]$ head -n3 access.log > product.txt
+[er1118220@BL1UL056 Aug_22]$ cat product.txt
+10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+10.123.80.65 - User2 [11:10:15]"GET /samsung-Mobile-sam88009/index.html HTTP/1.0"
+10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+--------------------------------------------------------------------------------------
+Cut command:
+roses:sunflower:lillies 
+-d - delimiter 
+-f - select field 
+-c - select character 
+-b - select bytes 
+Req: Fetch only the IP Address from the access.log file 
+[er1118220@BL1UL056 Aug_22]$ cat > flowers.txt
+roses:sunflower:lillies
+[er1118220@BL1UL056 Aug_22]$ cut -d":" -f2 flowers.txt
+sunflower
+[er1118220@BL1UL056 Aug_22]$ cat > emp
+101#Dhana#ETA
+102#Uday#IVS
+103#Sara#IMS
+[er1118220@BL1UL056 Aug_22]$ cut -d"#" -f2 emp
+Dhana
+Uday
+Sara
+[er1118220@BL1UL056 Aug_22]$ cut -d"#" -f3 emp
+ETA
+IVS
+IMS
+[er1118220@BL1UL056 Aug_22]$ cat access.log
+10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+10.123.80.65 - User2 [11:10:15]"GET /samsung-Mobile-sam88009/index.html HTTP/1.0"
+10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+10.123.80.65 - User2 [11:10:15]"GET /sony-Laptop-Lap8009/index.html HTTP/1.0"
+10.123.80.65 - User3 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User4 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User5 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User5 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User4 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - Admin [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+[er1118220@BL1UL056 Aug_22]$ cut -d"-" -f1 access.log
+10.123.80.65
+10.123.80.65
+10.123.80.65
+10.123.80.65
+10.123.80.65
+10.123.80.65
+10.123.80.65
+10.123.80.65
+10.123.80.65
+10.123.80.65
+[er1118220@BL1UL056 Aug_22]$ cut -d"-" -f2 access.log
+ User1 [11:10:15]"GET /sony
+ User2 [11:10:15]"GET /samsung
+ User1 [11:10:15]"GET /sony
+ User2 [11:10:15]"GET /sony
+ User3 [11:10:15]"GET /sony
+ User4 [11:10:15]"GET /sony
+ User5 [11:10:15]"GET /sony
+ User5 [11:10:15]"GET /sony
+ User4 [11:10:15]"GET /sony
+ Admin [11:10:15]"GET /sony
+[er1118220@BL1UL056 Aug_22]$ cut -d" " -f2 access.log
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+[er1118220@BL1UL056 Aug_22]$ cut -d" " -f3 access.log
+User1
+User2
+User1
+User2
+User3
+User4
+User5
+User5
+User4
+Admin
+[er1118220@BL1UL056 Aug_22]$ cut -d"/" -f3 access.log
+index.html HTTP
+index.html HTTP
+index.html HTTP
+index.html HTTP
+index.html HTTP
+index.html HTTP
+index.html HTTP
+index.html HTTP
+index.html HTTP
+index.html HTTP
+[er1118220@BL1UL056 Aug_22]$ cut -d"." -f4 access.log
+65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index
+65 - User2 [11:10:15]"GET /samsung-Mobile-sam88009/index
+65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index
+65 - User2 [11:10:15]"GET /sony-Laptop-Lap8009/index
+65 - User3 [11:10:15]"GET /sony-Inverter-IN8009/index
+65 - User4 [11:10:15]"GET /sony-Inverter-IN8009/index
+65 - User5 [11:10:15]"GET /sony-Inverter-IN8009/index
+65 - User5 [11:10:15]"GET /sony-Inverter-IN8009/index
+65 - User4 [11:10:15]"GET /sony-Inverter-IN8009/index
+65 - Admin [11:10:15]"GET /sony-Inverter-IN8009/index
+[er1118220@BL1UL056 Aug_22]$ cut cut -d"/" -c4 access.log
+cut: an input delimiter may be specified only when operating on fields
+Try 'cut --help' for more information.
+[er1118220@BL1UL056 Aug_22]$ cut cut -c4 access.log
+cut: cut: No such file or directory
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+[er1118220@BL1UL056 Aug_22]$ cut -d"/" -f3 access.log
+index.html HTTP
+index.html HTTP
+index.html HTTP
+index.html HTTP
+index.html HTTP
+index.html HTTP
+index.html HTTP
+index.html HTTP
+index.html HTTP
+index.html HTTP
+[er1118220@BL1UL056 Aug_22]$ cut -d"/" -f3 access.log | cut -d" " -f2
+HTTP
+HTTP
+HTTP
+HTTP
+HTTP
+HTTP
+HTTP
+HTTP
+HTTP
+HTTP
+[er1118220@BL1UL056 Aug_22]$ cut -d"/" -f3 access.log | cut -d"." -f2
+html HTTP
+html HTTP
+html HTTP
+html HTTP
+html HTTP
+html HTTP
+html HTTP
+html HTTP
+html HTTP
+html HTTP
+[er1118220@BL1UL056 Aug_22]$ cut -d"/" -f3 access.log | cut -d"." -f2 | cut -d" " -f2
+HTTP
+HTTP
+HTTP
+HTTP
+HTTP
+HTTP
+HTTP
+HTTP
+HTTP
+HTTP
+[er1118220@BL1UL056 Aug_22]$ cat access.log
+10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+10.123.80.65 - User2 [11:10:15]"GET /samsung-Mobile-sam88009/index.html HTTP/1.0"
+10.123.80.65 - User1 [11:10:15]"GET /sony-Mobile-Mob8009/index.html HTTP/1.0"
+10.123.80.65 - User2 [11:10:15]"GET /sony-Laptop-Lap8009/index.html HTTP/1.0"
+10.123.80.65 - User3 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User4 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User5 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User5 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - User4 [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+10.123.80.65 - Admin [11:10:15]"GET /sony-Inverter-IN8009/index.html HTTP/1.0"
+[er1118220@BL1UL056 Aug_22]$ cut -d" " f6 access.log
+cut: you must specify a list of bytes, characters, or fields
+Try 'cut --help' for more information.
+[er1118220@BL1UL056 Aug_22]$ cut -d" " -f6 access.log
+HTTP/1.0"
+HTTP/1.0"
+HTTP/1.0"
+HTTP/1.0"
+HTTP/1.0"
+HTTP/1.0"
+HTTP/1.0"
+HTTP/1.0"
+HTTP/1.0"
+HTTP/1.0"
+[er1118220@BL1UL056 Aug_22]$ cut -d" " -f6 access.log | cut -d"/" -f1
+HTTP
+HTTP
+HTTP
+HTTP
+HTTP
+HTTP
+HTTP
+HTTP
+HTTP
+HTTP
+--------------------------------------------------------------------------------------
+sort command:
+sort the lines in asc/desc order
+defaulty in asc order only 
+-t - delimiter 
+-k - select field
+-r - reverse
+-n - sort numerical data
+-u - remove duplicate lines
+-c - check whether file is in sorted order or not 
+[er1118220@BL1UL056 Aug_22]$ cat > emp
+dhana
+zubia
+thilak
+ram
+[er1118220@BL1UL056 Aug_22]$ sort emp
+dhana
+ram
+thilak
+zubia
+[er1118220@BL1UL056 Aug_22]$ sort -r emp
+zubia
+thilak
+ram
+dhana
+[er1118220@BL1UL056 Aug_22]$ sort > emp
+101#dhana#ETA
+110#uday#IVS
+106#sanjay#IMS
+120#hita#Apple
+[er1118220@BL1UL056 Aug_22]$ sort -t"#" -k2 emp
+101#dhana#ETA
+120#hita#Apple
+106#sanjay#IMS
+110#uday#IVS
+[er1118220@BL1UL056 Aug_22]$ sort -t"#" -k3 emp
+120#hita#Apple
+101#dhana#ETA
+106#sanjay#IMS
+110#uday#IVS
+[er1118220@BL1UL056 Aug_22]$ cat > marks
+100
+89
+89
+99
+78
+[er1118220@BL1UL056 Aug_22]$ sort marks
+100
+78
+89
+89
+99
+[er1118220@BL1UL056 Aug_22]$ sort -n marks
+78
+89
+89
+99
+100
+[er1118220@BL1UL056 Aug_22]$ sort -nr marks
+100
+99
+89
+89
+78
+[er1118220@BL1UL056 Aug_22]$ sort -nc marks
+sort: marks:2: disorder: 89
+[er1118220@BL1UL056 Aug_22]$ sort -nu marks
+78
+89
+99
+100
+[er1118220@BL1UL056 Aug_22]$ sort -nc marks
+sort: marks:2: disorder: 89
+[er1118220@BL1UL056 Aug_22]$ sort -c marks
+sort: marks:5: disorder: 78
+-------------------------------------------------------------------------
+uniq command:
+to remove repeated occurence of the consecutive lines from a file 
+initially the file has to be sorted 
+-u - select non repeated line
+-d - select duplicate lines 
+-c - count the freq of occurence 
+[er1118220@BL1UL056 Aug_22]$ sort -n marks|uniq
+78
+89
+99
+100
+[er1118220@BL1UL056 Aug_22]$ sort -n marks|uniq -u
+78
+99
+100
+[er1118220@BL1UL056 Aug_22]$ sort -n marks|uniq -d
+89
+[er1118220@BL1UL056 Aug_22]$ sort -n marks|uniq -c
+      1 78
+      2 89
+      1 99
+      1 100
+--------------------------------------------------------------------
+tr command:
+tr exp1 exp2 filename 
+-d - delete the character 
+-s - compress multiple consecutive chars 
+-c - complement the values of exprsn 
+[er1118220@BL1UL056 Aug_22]$ cut -d"#" -f2 emp | tr "[a-z]" "[A-Z]"
+DHANA
+SANJAY
+UDAY
+HITA
+[er1118220@BL1UL056 Aug_22]$ echo "haaaaaai" | tr -d 'a'
+hi
+[er1118220@BL1UL056 Aug_22]$ echo "haaaaaai" | tr -s 'a'
+hai
+[er1118220@BL1UL056 Aug_22]$ echo "unix123" | tr -d [0-9]
+unix
+[er1118220@BL1UL056 Aug_22]$ echo "unix123" | tr -cd [0-9]
+-----------------------------------------------------------------------------
+123[er1118220@BL1UL056 Aug_22]$ echo "hi there......" | tr '.' '#'
+hi there######
+rev command:
+to reverse the chars 
+----------------------------------------------------------------------------------
+comm command:
+comm file1 file2 
+o/p - 3 cols
+col1 - unique values to file1 
+col2 - unique values to file2 
+col3 -common from both the files 
+[er1118220@BL1UL056 Aug_22]$ cat > drawing
+dhana
+madhu
+meera
+sara
+[er1118220@BL1UL056 Aug_22]$ cat > music
+anil
+ankita
+dhana
+madhu
+[er1118220@BL1UL056 Aug_22]$ comm drawing music
+        anil
+        ankita
+                dhana
+                madhu
+meera
+sara
+[er1118220@BL1UL056 Aug_22]$ comm -2 drawing music
+        dhana
+        madhu
+meera
+sara
+[er1118220@BL1UL056 Aug_22]$ comm -12 drawing music
+dhana
+madhu
+---------------------------------------------------------------------------
+diff command:
+diff file1 file2 
+a-add
+d-delete
+c-change 
+
+1,2c1 
+< - first file 
+> - second file 
+! - where change is expected 
++ - add lines
+- - remove lines 
+[er1118220@BL1UL056 Aug_22]$ diff drawing music
+0a1,2
+> anil
+> ankita
+3,4d4
+< meera
+< sara
+[er1118220@BL1UL056 Aug_22]$ cat drawing
+dhana
+madhu
+
+[er1118220@BL1UL056 Aug_22]$ cat music
+
+dhana
+madhu
+[er1118220@BL1UL056 Aug_22]$ diff drawing music
+0a1,2
+> anil
+> ankita
+3,4d4
+< meera
+< sara
+[er1118220@BL1UL056 Aug_22]$ cat drawing music
+dhana
+madhu
+meera
+sara
+anil
+ankita
+dhana
+madhu
+[er1118220@BL1UL056 Aug_22]$ diff drawing music
+0a1,2
+> anil
+> ankita
+3,4d4
+< meera
+< sara
+[er1118220@BL1UL056 Aug_22]$ cat drawing
+dhana
+madhu
+meera
+sara
+[er1118220@BL1UL056 Aug_22]$ cat music
+anil
+ankita
+dhana
+madhu
+
+
+
+
+
+
+

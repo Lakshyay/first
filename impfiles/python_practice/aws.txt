@@ -1,0 +1,37 @@
+instances:(t2.micro,t1.small,t2.nano)
+    1.general purpose(email response system)
+    2.memory(for applications which need more ram or more memory,
+             mutlitasking)
+    3.compute(for lot of processing , like:analysing streaming data)
+    4.gpu(graphical kind of work)
+    5.storage(bigdata kind of applications)
+instance pricing models:
+    on-demand(hourly based,no long-term argeements,
+              you decide when to launch, stop, hibernate,
+              start, reboot, or terminate it.
+              )
+    reserved <=> saving plans (if you want to use for 1 to 3 years)
+    dedicated (gives you isolation and private space,
+               host(physical server with ec2))
+    spot(more than 90% discount,run fault tolerant workloads,it's like bidding)
+AMI-amazon machine images
+snapshots-used for backup
+---------
+AWS Lambda: serverless
+         -> automatically manges aws resources
+         ->launching orterminate instances and health checkups
+         ->autoscaling and patching new updates
+         -> pay per use service
+it works as lambda function runs only when it is called,
+         event  source trigger lambda function and then taks is executed.
+trigger and destination
+         
+-----
+AWS Elastic BeanStak: (PaaS)
+         it give platform to deploy application code which ever we required
+    -> developer need to focus more on code only rest is managed by beanstak
+    ->faster and simple to deploy
+    ->automatically scales up and down
+    ->application version is used if changes made in code can be run in two
+        different applicatioin which is duplicate of original one
+    ->can create multiple environments

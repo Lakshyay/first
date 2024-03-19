@@ -1,0 +1,171 @@
+Java Programming Fundamentals
+
+
+
+Lex Course Link: https://lex.infosysapps.com/en/app/toc/lex_29959473947367270000/contents
+
+*********************************************************************************************************************************
+
+*************************************************Day 1: 09-06-2022***************************************************************
+
+Introduction:
+
+	1991- James Gossling and his team--Sun Microsystems----> Oracle
+    IDE: Integrated Development Environment---Eclipse, Netbeans
+	
+Features:
+ Robust---memory management (garbage collector), exception handling
+ OOP--- abstraction, encapsulation, inheritance, polymorphism
+ Platform independent---   bytecode
+ secure --- 
+ Multithreading ---- 
+ -------------------------------------------------------------------------------------------------------------------------------------
+ 
+ Java Architecture:
+  JVM, JRE, JDK
+ -------------------------------------------------------------------------------------------------------------------------------------
+ 
+ Keywords: reserved---lowercase--- 50+
+                      int, byte, if, throw, final, finally, super, new
+ 
+ Identifiers:
+                      A programmer defined name for variable, method, class, object, interface.......
+					  Rules:
+					             - letters (uppercase and lowercase), digits (0, 1--9), _, $
+								 - starting should not be with digit    
+								 - cannot use keywords
+					 Conventions: class Demo,  int noOfEmployee
+						
+ Data types:
+                     '5'
+					 byte--- 1 byte ----                   -128 to 127 
+					 short --- 2 bytes-----              -32768 to 32767
+					 
+					 
+					 int age
+					 short age
+					 byte age   ------ efficient
+					 long age
+---------------------------------------------------------------------------------------------------------------------
+
+Type casting:  conversion of one data type to another
+
+	1. Implicit type casting: 
+											smaller to larger
+											Widening
+											No loss of data
+	
+	2. Explicit type casting: 
+											larger to smaller
+											narrowing
+											may be a loss of data
+---------------------------------------------------------------------------------------------------------------------
+
+Operators:
+
+[1]. According to type of operation:
+        1. Arithmetic operators: +, -, *, /, %
+														56/2   = 28
+														56.0/2 = 28.0
+														56/2.0 = 28.0
+														56.0/2.0 = 28.0
+														
+														23%5 = 3
+														(-23)%5= -3
+														23%(-5)= 3
+														(-23)%(-5)= -3
+														
+		2. Relational operators: <, <=, >, >=, ==, !=
+		3. Logical operators: &&, ||, !
+		                                        age>=18     &&    Indian    ---->  eligible for voting
+		4. Bitwise operators: binary equivalent values   &, |, ~, ^, <<, >>
+		5. Increment and decrement operators: ++,  --
+		6. Conditional operator (ternary):        ?:
+		                                                                  condition ?  value1  :   value2;
+		7. Assignment operator: =     +=                      x+=4; -----> x=x+4
+		8. other additional operators:  ., -> 
+
+[2]. According to number of operands:
+		1. Unary operators: ++, --           x++   
+		2. Binary operators: +, -               x+y
+		3. Ternary operators:   ?:
+------------------------------------------------------------------------------------------------------------------------------------------
+
+Class and Objects: 
+
+ Class: blueprint, template, structure
+ Object: real world instance
+ 
+ int x; 
+ 
+ x=5;
+ x+10;
+ 
+ class <class-name>{
+  Data members;
+  Methods;
+  }
+  
+  class Employee{
+  String name;
+  int age;
+  
+  void setName(String name)
+  {
+  this.name = name;
+  }
+  
+  String getName()
+  {
+  return this.name;
+  }
+  }
+  
+  
+  Employee employee = new Employee();
+  
+  Employee obj = new Employee();
+  
+  obj.setName("Sachin");
+  System.out.println("Name of employee = "+obj.getName());
+ ---------------------------------------------------------------------------------------------------------
+ 
+ Constructor:
+
+ int x=20;
+ 
+ StudentInfo s1 = new StudentInfo();
+ 
+ s1.setName("Sachin");
+ s1.setStudentId(1);
+ s1.setMarks(55.21);
+ 
+ -Constructor is special method to initialize an object.
+ -Name of constructor is same as name of class.
+ -No return data type, not even void also.
+ -It is invoked automatically when an object is created.
+ 
+ 1. Default constructor: No parameters
+ 
+ 2. Parameterized constructor: with parameters
+ ---------------------------------------------------------------------------------------
+ 
+ Inheritance:
+	-code reusabilty
+	-keyword: extends
+
+Player: name, age, team, matches
+CricketPlayer extends Player: runs, wickets, batting-avg
+FootballPlayer extends Player: goals
+ ---------------------------------------------------------------------------------------
+ 
+ Polymorphism:
+ 1. Static polymorphism/ compile time/Early binding---> method overloading
+     diff. no / sequence/ data types of parameters
+ 
+ 2. Dynamic polymorphism/ run time/ Late binding -----> method overriding
+ ----------------------------------------------------------------------------------------------
+ 
+ super keywords:
+ - when members in parent and child class are having same name, and we want to access such member of parent class into child class
+ - call constructor of parent class into a constructor of child class

@@ -1,0 +1,27 @@
+
+Demonstration on Amazon Cloud Trail
+Objective
+Through this demo you will learn how to use AWS CloudTrail to
+record API calls for an account and to deliver log files into S3 bucket
+Pre-requisites
+You must have a valid AWS account. You need to sign-in to the account.
+Step1- Login to your AWS account and click on Cloud Trail from AWS
+management console
+Step2-Click on Create trail and configure the details
+Trail Name-demo-trail-logs
+For Storage location enter the below details:
+Create a new S3 bucket: Yes
+Provide a name for the bucket in the valid format.
+Step3: Choose the type of events that you want to log
+Managements events
+Data events
+Insights events
+Finally review and click on create.
+Step 4: You can check your trail dashboard to see the newly created trail
+Step5: Check the S3 bucket to see the record of API calls.
+Summary: In this demo you have learnt how to use AWS CloudTrail to
+record API calls for an account and to deliver log files into S3 bucket
+Add-on Exercise –
+1. For the CloudTrail created, configure SNS topic to receive email
+notifications, whenever cloudtrail logs a “Terminate Instance”
+event in a region.

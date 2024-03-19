@@ -1,0 +1,37 @@
+Installation and configuration of Docker
+Objective:
+To install and configure Docker on an EC2 Linux instance.
+Step1: Updating the repository
+Login to the Linux EC2 instance and update the repository as a
+pre-cursor.
+The command to update is
+sudo yum update -y
+Step2: Installing Docker
+Once the update is completed, install the Docker using the
+command,
+sudo yum install –y docker
+As you know that the Docker works in a client-server model, you
+need to start the Docker daemon.
+To start it type,
+sudo service docker start
+To start the Docker daemon automatically during the subsequent
+reboot process, type
+sudo chkconfig docker on
+Thus, the deployment of Docker is executed successfully. Also,
+the Docker daemon service is started promptly.
+The verification of this installation can be done by knowing the
+version of the Docker through the command, docker --version
+Step3: Adding user accounts to docker group
+To onboard the end users such as developers, test engineers or
+DevOPS professional, you need to add the user accounts to the
+group docker using the usermod command.
+sudo usermod -aG docker ec2-user
+If the user had been added successfully, you can verify by
+executing the below command,
+grep –i –e ‘docker’ /etc/group
+Step4: Accessing Docker as an end user
+Open a duplicate terminal and login as “ec2-user”.
+You can verify it by using the command, docker info
+Summary:
+Thus, you have learnt how to deploy Docker and on-board
+end-users.

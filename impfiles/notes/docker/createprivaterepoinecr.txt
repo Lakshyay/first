@@ -1,0 +1,43 @@
+
+Creating a private repository using Amazon ECR
+Amazon ECR is a managed registry as a service which can be used to
+create both public and private repositories. The public repositories will
+be available for use in Amazon ECR Public Gallery - public website to
+find and share container images hosted in Amazon ECR public
+repositories.
+Objectives: As part of this demonstration, we will be performing the
+following tasks:
+Task 1: Creating a private repository in AWS
+Task 2: Creating a Docker image for a sample php application and
+pushing the docker image to the private repository
+Prerequisites:
+1) An IAM account with programmatic access and
+AmazonEC2ContainerRegistryFullAccess and
+AmazonEC2FullAccess policies attached to it.
+2) Amazon Linux 2 EC2 instance with Docker and git installed on it
+For information on Docker installation, please refer:
+https://docs.aws.amazon.com/AmazonECS/latest/developergui
+de/docker-basics.html#install_docker
+3) AWS credentials configured on the Linux EC2 machine/AWS CLI
+using aws configure command
+Task 1: Creating a private repository in AWS
+Step 1: In the ECR dashboard, click on Get Started
+Step 2: Choose the visibility as Private and enter the name for the repo
+Step 3: Leave all other settings to default and click on Create
+repository. The private repository will be created.
+Task 2 - Creating a Docker image and pushing the docker image to the
+private repository
+Step 1: Connect to the Linux EC2 instance & ensure you have aws cli 2.X
+version
+Step 2: Clone the sample php application from the below git URL
+https://github.com/awslabs/ecs-demo-php-simple-app
+Step 3: Change the directory to application folder
+Step 4: Build and push Docker image. To do this refer to the push
+command details at the repository level. To view the commands, Click
+on the repository name in the ECR dashboard, and then on View push
+commands. Execute all the commands listed in the same order.
+After executing the docker push command, the image will be visible in
+the private repository. Go back to the repository and click on refresh.
+The latest image will be visible.
+In this demonstration, you have learnt to create a private repository
+using ECR and to push a docker image in to an ECR repository.

@@ -1,0 +1,23 @@
+import json
+import boto3
+def lambda_handler(event, context):
+    
+    cw_client = boto3.client('cloudwatch', region_name='us-east-1')
+    
+    ct_client = boto3.client('cloudtrail', region_name='us-east-1')
+    json_message = json.loads(event['Records'][0]['Sns']['Message'])
+    
+    trail_name = json_message['AlarmName']
+    
+    alarm_name = trail_name
+    try:
+        status = ct_client.get_trail_status(Name=trail_name)['IsLogging']
+        
+        if(not status):
+            ct_client.start_logging(Name=trail_name)
+        else:
+            print('Trail is already logging')
+    
+    except Exception as e:
+        print('Trail Issue')
+        

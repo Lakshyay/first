@@ -1,0 +1,239 @@
+					Advanced Spark - Day 1
+*************************************************************************************************************************
+
+LEX Course Link : https://lex.infosysapps.com/web/en/app/toc/lex_auth_013702212822147072126/overview
+
+
+
+
+Prerequisites
+-------------
+HDFS commands
+Basic shell scripting
+Java/Scala programming
+SQL 
+
+	Courses on Lex:
+		Hadoop Framework
+		Scala Programming
+		Spark Framework: Spark Lex course: https://lex.infosysapps.com/web/en/app/toc/lex_auth_012761696287039488674/overview 	
+ 
+
+
+Session Plan
+-------------
+
+Day 1 --> Basics of SF, Execution modes & mechanisms, Demos --> DataFrame API, JDBC Connectors, UDF,UDAF, Hive UDF integartion with Spark, Web UI in detail
+
+Day 2 --> partitioning and bucketing, performance tuning, debugging,Spark security, join strategies
+
+
+
+
+
+
+Apache Spark - Day 1
+---------------------
+
+
+Spark Framework ---> in-memory processing engine
+
+HDFS --> data source
+
+Spark Core	---> batch data analsys
+Spark SQL
+Spark Streaming --> real time data analysis
+Spark MLLib 
+Spark GraphX
+
+
+* Test your Knowledge - Spark Basics
+
+				internally
+Spark SQL ---> queries ------------------> core engine
+
+
+Putty --->SH/AHD
+http://laboncloud/Home/GetSlots ---> Spark slot
+hostname,username,password
+
+cluster --> 3 nodes
+
+chnntxetarh14 ---> driver
+chnntxetarh15 ---> executors
+chnntxetarh16 ---> executors
+
+* Execution Modes
+
+			Local Mode ---> default,
+					multithreaded application
+
+				 spark-shell --master local[3]
+					1-> driver, 2-> executors ------run as a multithreaded application
+
+						local cluster manager
+
+			Client Mode---deploy-mode
+
+			Cluster Mode		cluster manager
+
+			
+
+
+
+	
+	Test your knowledge - Execution Modes
+	Quiz
+
+* Execution Mechanisms
+
+		Interactive shell
+		Submit job
+		
+
+
+In Spark Framework course, DataFrames were created by converting an RDD using toDF() method. In this course, DataFrameReader API, which is associated with SparkSession object, will be used to load the input files into a DataFrame.
+
+
+* DataFrameReader
+	 spark.read
+
+	input file format: CSV, JSON, Parquet, ORC formats are supported. The parquet file format is the default.
+	inferSchema: If set to True, Spark will automatically go through the input file and infer the datatype of each column.
+	header: This property can be set to True to indicate that the first row of the file is the header.
+
+	Syntax:
+		val inputdf=spark.read
+		.option("inferSchema","true")
+		.option("header","true")
+		.csv("input file path")
+
+
+ val df1= spark.read.csv("/user/bhanu_trng/artistdata")
+df1.printSchema
+
+
+header, inferSchema
+
+
+val df1= spark.read.option("header","true").csv("/user/bhanu_trng/artistdata")
+
+ val df1= spark.read.csv("/user/bhanu_trng/Employee")
+val df1= spark.read.option("inferSchema","true").csv("/user/bhanu_trng/Employee")
+
+val df1= spark.read.option("header","true").option("inferSchema","true").csv("/user/bhanu_trng/artistdata")
+OR
+val df1 = spark.read.options(Map("header"->"true","inferSchema"->"true")).csv("/user/bhanu_trng/artistdata")
+
+
+
+* DataFrameWriter
+	The write attribute of DataFrame will be used for saving the DataFrame content in various formats.
+
+	Syntax:
+
+		dataframe.write.
+		format("csv").
+		option("mode", “OVERWRITE”).
+		option("path", "path_to_file").
+		save()
+
+
+
+Eclipse IDE for scala
+Maven
+
+
+
+Business Scenario
+Requirement1
+	Demo
+	Quiz
+ spark-submit --class demopackage.DataAnalysis --master local --conf spark.ui.port=50408 TunesMusiccReq1-0.0.1-SNAPSHOT.jar
+
+
+
+SF --> csv,parquet,avro,json,hive warehouse
+
+RDBMS-->mysql + Spark
+
+
+
+
+* Spark JDBC Connection
+
+	include the JDBC driver for the specific database on the spark classpath
+		“mysql-connector-java-5.1.46.jar"
+		“postgresql-9.4.1207.jar"
+
+	JDBC Connection Properties
+
+	Syntax:
+
+	val dataframe = spark.read.format("jdbc").
+ 	option("url","jdbc:mysql://servername/dbname").
+ 	option("driver", "com.mysql.jdbc.Driver").
+ 	option("dbtable", "Tablename").
+	 option("user", "dbuser").
+ 	option("password", "secretkey").
+ 	load()
+
+
+Requirement 2- find top 3 albums with highest ratings.
+Demo
+Quiz
+datasource- MySQL
+Analysis - Spark SQL
+Data Sink - MySQL
+
+
+mysql --user=root --password=Infy@123
+spark-submit --class demopackage.AlbumAnalysis --master local --conf spark.ui.port=50408 TunesMusiccReq2-0.0.1-SNAPSHOT.jar
+
+* User Defined Functions in Spark
+	to create custom functionalities 
+
+	Steps to create a Spark UDF
+		Write a function in any of the Spark supported programming languages
+		Convert this function to a Spark UDF by passing the function to Spark SQL udf() method of org.apache.spark.sql.functions.udf package
+		Register this function with spark.sqlContext.udf.register() method to invoke it using SQL queries
+
+Reuirement 3- Define a Spark UDF to map the gender field values of "M" and "F" to "Male" and "Female" respectively in the artist file of 			TunesMusicc. 
+Demo
+
+spark-submit --class demopackage.Genderudf --master local --conf spark.ui.port=50408 TunesMusiccReq3-0.0.1-SNAPSHOT.jar
+
+
+UDAF
+
+* User-Defined Aggregate Function
+	To define customized aggregation functions (max,min,count,avg) based on business rules.
+	UserDefinedAggregateFunction base class must be inherited, and the following methods need to be implemented:
+
+		inputSchema represents input arguments as a StructType 
+		bufferSchema represents intermediate UDAF results as a StructType 
+		dataType represents the return datatype 
+		deterministic is a Boolean value that specifies whether this UDAF will return the same result for a given input 
+		initialize allows to initialize values of an aggregation buffer 
+		update describes how to update the internal buffer based on a given row 
+		merge describes how two aggregation buffers should be merged 
+		evaluate will generate the final result of the aggregation
+
+Requirement 4-  Define a Spark UDAF to compute the average rating of TunesMusicc's albums. 
+Demo
+spark-submit --class demoUDAFPackage.ratingudaf --master local --conf spark.ui.port=50408 TunesMusicIndiaUDAF-0.0.1-SNAPSHOT.jar
+
+
+
+* Integration of Hive UDF with Spark
+		To invoke Hive UDF or UDAF from Spark, the function must be first registered in Spark before using them in Spark SQL queries, using 		the CREATE TEMPORARY FUNCTION statement.
+
+
+Requirement 5- Integrate Hive UDF with Spark to generate remarks for albums based on their ratings
+Demo
+Quiz
+
+ spark-submit --jars /home/bhanu_trng/hivenov1.jar --class demopackage.DataAnalysis --master local --conf spark.ui.port=50408 TunesMusiccReq5-0.0.1-SNAPSHOT.jar
+
+* Spark Web UI
+

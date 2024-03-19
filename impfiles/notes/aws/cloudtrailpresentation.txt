@@ -1,0 +1,266 @@
+
+9
+Amazon CloudTrail
+❖ Content Sourced from AWS as of March 2021 and are subject to changes in the future
+Hi !, Welcome to this module on Amazon CloudTrail. AWS CloudTrail is a
+service offered by Amazon which provides governance, compliance,
+operational auditing and risk auditing of your AWS account.
+1
+What is Amazon
+Cloud Trail
+CloudTrail
+Features
+CloudTrail
+Concepts
+Use cases of
+AWS CloudTrail
+In this module you will learn about –
+1. What is Amazon Cloud Trail service.
+2. What are the Features of CloudTrail.
+3. Some of the use cases of CloudTrail
+4. And the concepts related to CloudTrail.
+So let us get started with this module on AWS Cloud Trail.
+2
+What is Amazon CloudTrail?
+Amazon CloudTrail
+Governance
+Compliance
+Operational Auditing
+Risk Auditing
+Log Monitor
+Retain
+So, what is Amazon CloudTrail?
+AWS CloudTrail is a service offered by Amazon which provides governance,
+compliance, operational auditing and risk auditing of your AWS account.
+With AWS CloudTrail you can continuously log, monitor and retain account
+activity related to your AWS Infrastructure.
+3
+Simplified
+compliance
+Features of Amazon CloudTrail
+Security Analysis
+and Troubleshooting
+Always ON
+Visibility into user
+and resource activity
+Security Automation
+Now let us explore some of the features which Amazon CloudTrail Offers.
+Amazon CloudTrail offers simplification of your compliance audits by
+automatically recording and storing event logs for every action made within
+your AWS Account.
+Amazon CloudTrail provides a comprehensive history of changes that
+occurred in your AWS account, using which you can discover and troubleshoot
+security and operational issues.
+AWS CloudTrail records AWS Management console and API calls providing
+you with the visibility into user and resource activity.
+With CloudTrail you can track and automatically take action related to account
+activity threatening the security of the AWS account.
+CloudTrail service is enabled on all AWS accounts and records every activity
+within your account upon account creation.
+4
+Amazon CloudTrail – Use Cases
+Compliance aid
+Easily ensure compliance
+Security Analysis
+Detect user behavior patterns
+Data exfiltration
+Detect data exfiltration on S3 objects
+Troubleshooting
+Troubleshoot operational issues.
+Now let us explore some of the use cases of CloudTrail service.
+AWS CloudTrail can be used as a compliance aid which makes it easier to
+ensure compliance with internal policies and regulatory standards by providing
+history of activity in your AWS Account.
+AWS CloudTrail can be used to perform security analysis by detecting user
+behavior patterns.
+AWS CloudTrail can be used for Data exfiltration on S3 objects by collection
+activity data on S3 objects through object level API events recorded.
+CloudTrail can be used for troubleshooting operational issues with the help of
+AWS API call history produced by AWS CloudTrail.
+5
+How to Manage CloudTrail?
+Amazon CloudTrail
+AWS Management Console AWS CLI CloudTrail RESTful APIs AWS SDKs
+You can choose to use and manage CloudTrail either through the –
+AWS Management Console
+AWS Command Line Interface Tool
+CloudTrail RESTful APIs or
+Through an AWS SDK of choice
+6
+You have learnt
+What is Amazon
+Cloud Trail
+CloudTrail
+Features
+Use cases of
+AWS CloudTrail
+So, to conclude, In this module you have learnt about
+1. What is Amazon Cloud Trail service.
+2. What are the Features of CloudTrail.
+3. Use case of CloudTrail service
+In next video you will learn about Cloud Trail Concepts
+7
+CloudTrail
+Concepts
+Amazon CloudTrail - Concepts
+In this video you will learn about
+1. Various concepts related to CloudTrail.
+So let us get started.
+8
+Amazon CloudTrail - Concepts
+Amazon CloudTrail
+CloudTrail Events CloudTrail Event History Trails
+Now let us look into the concepts related to CloudTrail service.
+Working with CloudTrail involves understanding of basic concepts such as –
+CloudTrail events, CloudTrail event History and Trails.
+Let us explore these concepts in detail.
+9
+CloudTrail Events
+Activity Records in your
+AWS account
+User
+Role
+Service monitored by CloudTrail
+Actions
+by
+API and non-API
+activities
+• AWS Management Console
+• AWS SDKs
+• CLI Tools
+• Other AWS Services
+Management Events
+CloudTrail Insight Events
+Data Events
+Let us understand CloudTrail Events.
+CloudTrail events are the records of activities happening in your AWS Account.
+These activities can be actions performed by either a user, role, or a service
+monitored by CloudTrail.
+Through CloudTrail Events, you get a history of both API and non-API account
+activities made either through the AWS Management Console, AWS SDKs,
+CLI tools and other AWS services.
+CloudTrail can log 3 types of event which are – Management Events, Data
+Events, and CloudTrail Insight Events.
+Let us explore these 3 events type In further detail.
+10
+Let us understand CloudTrail Events.
+CloudTrail events are the records of activities happening in your AWS Account.
+These activities can be actions performed by either a user, role, or a service
+monitored by CloudTrail.
+Through CloudTrail Events, you get a history of both API and non-API account
+activities made either through the AWS Management Console, AWS SDKs,
+CLI tools and other AWS services.
+CloudTrail can log 3 types of event which are – Management Events, Data
+Events, and CloudTrail Insight Events.
+Let us explore these 3 events type In further detail.
+10
+CloudTrail Events – Management Events
+Information on management operations
+Configuring Security Registering Devices Configuring rules for
+routing data Setting up Logging
+e.g., - IAM
+RoleCreate API
+operation
+e.g., Amazon EC2
+CreateDefaultVPC
+API operations
+e.g., - Amazon EC2
+CreateSubnet API
+operations
+e.g., - Amazon
+CloudTrail CreateTrail
+API operations
+... and
+more
+Control Plane Operations
+Management events are events which provides you with information of
+management operations performed on resources in your AWS account. These
+operations are also referred to as control plane operations.
+Some of the examples of such management events are –
+Events related to Configuring security – for example, the API operations
+related to the creation of an IAM role
+Events involving Registering Devices – for example, the API operation related
+to the Creation of Default VPC.
+Events for Configuring rules for routing data – for example, Amazon EC2
+Create Subnet API operations.
+Events for Setting up Logging – for example, Amazon CloudTrail Create Trail
+API operation.
+And other events fall under the Management Category.
+11
+CloudTrail Events – Data Events
+Data Plane Operations
+Information on resource operations
+Amazon S3 object-
+level API activity
+Lambda function
+execution activity
+e.g., - GetObject,
+DeleteObject API
+operations
+e.g., Invoke API
+Data Events not logged by default
+Data events are events which provide you with information about the resource
+operations performed on or in a resource in your AWS account. These
+operations are also called as Data Plane operations.
+Some of the events included under the Data event type category are –
+Amazon S3 object-level API Activities such as GetObject, DeleteObject etc.,
+AWS Lambda function execution activity such as the Invoke API.
+Kindly note that Data events are not logged by default, when a trail is created,
+supported resources have to be explicitly added to the trail.
+12
+CloudTrail Events - CloudTrail Insights Events
+Record Unusual Account Activity
+Provides information such as –
+• Associated API.
+• Incident Time
+• Statistics
+Insights only logged when API usage differs
+from usage patterns
+Example – Insight Event logged
+when S3 deletebucket API call is 100
+per minutes as compared to usual
+of 20 deletebuckets API calls
+Insight events in Cloud Trail allows you to capture unusual activity in your AWS
+account.
+It provides relevant information such as – the associated API, incident time,
+and statistics that help you to understand and act on the unusual activity.
+Insights events are only logged when CloudTrail detects that your account
+APIs usage is differing significantly from the account's typical usage pattern.
+One example of such event is - Suppose your AWS account typically logs 20
+deletebucket S3 API calls per minute, but if suddenly accounts starts to log
+100 API calls per minute, and Insight event is logged at the start and the end
+of the unusual activity.
+13
+CloudTrail Event History
+CloudTrail Event History
+Provides
+Searchable Downloadable
+upto
+Viewable
+90 Days of CloudTrail Ev ents
+S3 Bucket
+With Cloud Trail event history, you get a viewable, searchable and
+downloadable record of the your CloudTrail events of up to 90 days.
+This can be used to gain visibility into actions taken in your AWS account.
+Events older than 90 days are not visible on the event history page but can be
+stored in a S3 bucket.
+14
+Trails
+Trails CloudTrail Events
+Delivered to
+S3 BucketCloudWatch Logs CloudWatch Events
+Filter events you want delivered Encrypt CloudTrail event log file Set-up SNS notifications
+Now let us explore what are Trails.
+Trails are configurations which allow the delivery of CloudTrail events to Cloud
+Watch Logs, S3 buckets and Cloud Watch Events.
+With trails, you can filter only the events you want delivered, encrypt the log
+files of Cloud Trail Events and setup Amazon SNS notifications for log file
+delivery.
+15
+You have learnt
+CloudTrail
+Concepts
+So, to conclude, In this video you have learnt about
+Various concepts related to CloudTrail.
+Thank you.
+16

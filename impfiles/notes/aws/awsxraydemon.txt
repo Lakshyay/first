@@ -1,0 +1,37 @@
+
+6
+Demonstration on Amazon X-ray
+Objective
+Through this demo you will learn how to create a sample Application
+using elastic beanstalk and deploy X-RAY agent on it. Track the data
+flow and explore the components.
+Pre-requisites
+You must have a valid AWS account. You need to sign-in to the account.
+Step1- Login to your AWS account and click on X-ray from AWS
+management console
+Step2- Select a sample application deployment using node.js.This will
+create a sample application using Elastic Beanstalk.
+You will be redirected to the CloudFormation service dashboard with a
+default template location pre-populated as below. You can specify any
+other templates if you need.
+https://s3.amazonaws.com/aws-xray-assets.us-east-1/samples/aws-
+xray-sample-template.yaml
+Step3- Click Next
+Provide a Stack name. Select a VPC and subnet. Otherwise proceed with
+Default VPC and default values
+Review and click on Create in the next page.
+The Stack will be visible with status as Create_In_Progress
+Step 4: After some time, it will create another stack in elastic beanstalk
+and both the processes get completed in few minutes.
+This gets completed eventually.
+Step 5: Go back to X-Ray configuration screen and click on Done.
+Go to CloudFormation and check the output tab of x-ray stack. Get the
+Ip address allocated and open in a browser.
+Step 6: Click on Start button, it will start sending requests from different
+IP addresses.
+Go to X-ray Service map and refresh, you will find the service map
+updated with the request flow traces, thus helping in tracking.
+You can also view the Traces and analytics of the application.
+Summary-In this demo, you have learnt how to create a sample
+Application using elastic beanstalk and deploy X-RAY agent on it. Track
+the data flow and explore the components

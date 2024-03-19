@@ -1,0 +1,38 @@
+
+1
+Demonstration on AWS Config
+Objective
+Through this demo you will learn how to Set up AWS Config to audit the
+resources.
+Pre-requisites
+You must have a valid AWS account. You need to sign-in to the account.
+Step1- Login to your AWS account and click on Config from AWS
+management console
+Step2- In the settings page, select the resource types that has to be
+recorded. AWS gives you an option to record all resources or the selected
+resources that has to be recorded.
+Step 3: The rules for AWS Config has to be chosen. AWS Config can check
+the configuration of your resources against rules that is defined. One or
+more rules can be selected.
+Here AWS service role is chosen.
+Step 4: After reviewing the setup, click on confirm.
+Step 5: Once the config is started, it starts recording the resource type
+that is selected.
+Step 6: Click on Turn off to stop recording.
+Step 7: Configuration history gets stored in the S3 bucket that is
+specified.
+Summary-In this demo you have learnt how to Set up AWS Config to
+audit the resources.
+Add-on Exercise
+Create an AWS Config recorder in your AWS Account and add the below
+account level AWS rules, and observe the compliant and non-compliant
+resources –
+1. iam-password-policy
+2. vpc-flow-logs-enabledNot set
+3. iam-root-access-key-check
+4. elb-logging-enabled
+5. cloudtrail-enabled
+6. ec2-instance-no-public-ip
+7. ebs-optimized-instance
+8. root-account-mfa-enabled
+9. multi-region-cloudtrail-enabled

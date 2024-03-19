@@ -1,0 +1,18 @@
+How to set an environment variable for your account:
+     File explorer ->This PC ->Local disk C ->Users ->Username ->Appdata ->Roaming ->npm
+*Note: If you don't find Appdata ensure that you have selected hidden items which is present in view.
+     copy the npm path.
+
+Search for Edit environmental variables for your account ->double click on the path ->click on New ->Paste the path which you have copied -> click ok ->Again click ok.
+
+Now your path is set.
+
+Commands for Angular App installation and creating the project:
+
+npm install -g @angular/cli@13.1.3
+ng v
+ng new <project name>
+would you like to add routing? Give yes
+Styling to be selected is CSS
+
+To run the project: ng s --o

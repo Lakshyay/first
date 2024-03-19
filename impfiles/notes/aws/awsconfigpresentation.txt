@@ -1,0 +1,159 @@
+
+17
+Concepts of
+AWS Config
+AWS Config - Concepts
+In this video you will learn about
+1. the concepts related to the usage of AWS Config service.
+8
+AWS Config - Concepts
+AWS Resources
+Configuration History
+Configuration Items
+Configuration Recorder
+Configuration Snapshot
+Configuration Stream
+Now let us explore, the concepts around AWS Config.
+Some of the concepts related to AWS Config are,
+1. AWS resources.
+2. Configuration History.
+3. Configuration Items.
+4. Configuration Recorder.
+5. Configuration Snapshot.
+6. Configuration Stream.
+Let us explore these concepts in detail.
+9
+AWS Config - Concepts
+AWS Resources
+Resource referred via its unique identifier
+(resource ID or ARN)
+Entities created via console, CLI, SDKs or
+partner tools
+AWS resources, as the name suggests these are the entities created and
+managed using the console, CLI, SDKs or partner tools.
+AWS Config refers each resource via its unique identifier.
+10
+AWS Config - Concepts
+Configuration History Collection of configuration items over any
+time period
+Provides information about resource
+creation and configuration
+Configuration history, provides a collection of the configuration items for a
+given resource, over any period of time.
+It also provides information, which helps to answer questions such as ,“When
+a resource was created, how it was configured etc.,“
+11
+AWS Config - Concepts
+Configuration Items
+Point-in-time view of various attributes of
+supported AWS resources
+Components include – metadata,
+attributes, relationships, current
+configuration and related events
+Configuration item created whenever
+changes is detected to a recorded
+resource type
+Configuration items provide a point-in-time view of the various attributes of a
+supported AWS resource in your account.
+Configuration item include the components such as – metadata, relationship,
+current configuration etc.,
+A configuration item is created by AWS config whenever changes are detected
+to a resource being recorded.
+12
+AWS Config - Concepts
+Configuration Recorder Recorder stores the configuration of
+resources as configuration items
+By default, all supported resources
+recorded
+The configuration recorded is responsible for storing the configuration of all the
+supported AWS resources in your AWS account as configuration items.
+By default, the configuration recorder starts recording all supported resources
+in your AWS account in regions where AWS config is running
+13
+AWS Config - Concepts
+Configuration Snapshot
+Collection of configuration items for
+supported resources
+A complete picture of resources being
+recorded and their configurations
+Can be used as a tool for validating
+configuration
+A configuration snapshot, is a collection of configuration items for supported
+resources, which provides a complete picture of resources being recorded and
+their configurations, and it can be used as a tool for validating configuration.
+14
+AWS Config - Concepts
+Configuration Stream
+List of configuration items automatically
+updated
+Configuration item added to stream
+whenever a resource is created, modified
+or deleted.
+Integrated with Amazon SNS topic of user
+choice
+A configuration stream, is a list of all configuration items for resources, AWS
+config is recording and the list is updated automatically.
+Whenever a resource is created, modified or deleted, AWS config creates a
+configuration item and adds it to the configuration stream.
+Configuration stream works by using a Amazon SNS topic of your choice.
+15
+Source Account
+AWS Account from
+which you want to
+aggregate
+configuration and
+compliance data
+Resource type in
+Config to collect
+configuration and
+compliance data
+from multiple
+source accounts
+and regions
+Aggregator
+Refers to the
+permissions
+granted by the
+source account to
+aggregator
+account
+AuthorizationSource
+Region
+AWS region from
+which you want to
+aggregate
+configuration and
+compliance data
+Aggregator
+Account
+AWS Account
+where the
+aggregator
+resource is created
+Multi-Account Multi-Region Data Aggregation
+Now let us explore the concept of Multi-Account Multi-Region Data
+Aggregation of AWS Config.
+With AWS Config you can aggregate your configuration and compliance data
+from multiple accounts and regions into a single account.
+It is a useful feature for IT administrators for monitoring compliance for AWS
+accounts in the enterprise.
+This involves the following concepts –
+Source Account which is an AWS account from which you want to aggregate
+configuration and compliance data.
+Source Region which is the region in AWS from where you want to aggregate
+configuration and compliance data.
+Aggregator which is a new resource type in config and is responsible for
+collecting configuration and compliance data from multiple source accounts
+and regions.
+Aggregator account which is the account where the aggregator resource is
+created.
+Authorization, which refers to the permission which the source account owner
+grants to an aggregator account and region to collect configuration and
+compliance data
+16
+You have learnt
+Concepts of
+AWS Config
+So, to conclude, In this module you have learnt about
+1. the concepts related to the usage of AWS Config service.
+2. Thank you.

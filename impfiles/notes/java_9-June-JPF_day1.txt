@@ -1,0 +1,281 @@
+JPF-Day 1
+_____________________________________________________________________________________________________
+
+Scope of variables/ types of variables/
+
+(eclipse)-brown(local)
+          blue and italics(static)
+		  blue(non-static)
+1.Local variable- they are created inside a method and should be used only within created method.
+                  These variables cannot be used without initializing it.
+			
+2.static variables- They are created outside all the methods but inside a class using static keyword.
+                    These variables have global access and can be used anywhere in the program.			
+				  
+3.Non-static variables/instance variables-these variables are created outside all the methods but inside a class                    
+                                           without static keyword.
+										   we cannot access these variables without creating object.
+4.Reference variable: These variables are created to store object's address in it.
+                      The datatype of this variable is always class name. 
+
+
+1.control flow statements- These are the statements which can change the order of execution of the program
+       if statement-
+	   if else statememt-
+	   nested if else-
+	             Sysntax-if()
+				          {
+						     if()
+							  {
+							  statements
+							  }
+							  else{
+							  statements
+							  }
+							  }
+				        else{
+							  
+							statements 
+							  }
+							  
+	if else if ladder-
+
+Switch statement-you can use switch statement to selelct one of the many code blocks(cases) to be executed based 
+                 on the variable which is tested.
+                        Syntax: switch(expression){
+                                   case x:
+                                    //code blocks 
+                                 break;
+                                    case y:
+                                    .....
+                                default:									
+			
+2.Jump statements- they transfer the control from one point to other in the program.
+                       break, continue.
+3.Looping statements-	They executes a set of repeated statements as long as the specified condition remains true.
+                  while loop: initialize variable  
+                               while(boolean condition)
+                                {		
+                                 looping statements 
+                                 counter;
+                               }	
+                        
+                 for loop: for(initialization condition; condition;increment/decrement)
+                            {
+                              loopong statements;
+                              }
+
+                 do while: 		It check the condition at the end of loop body.
+                             do{
+                                 // looping statements
+								 counter;
+                                 }while(condition);		
+
+
+
+Arrays:  arrays are special objects created to store collection of values in it.	
+ 1D- A linear array in which elements are stored in contiguous memory locations.
+  2D- It is an array of array elements that are stored in rows and columns.
+
+
+Enhanced for loop/ foreach loop: an easy way to traverse.
+                             Syntax: for(datatype varname : arrayname){
+							                //statememts
+							              }
+										  
+										 
+Introduction to OOPs concept: 
+ Abstraction- (Data Hiding) Hiding the implementation details from the perspective of user.
+                 How do we achieve it? By using Interfaces and abstract classes.
+ Encapsulation-In order to hide the internal state from the outside world, we wrap the data and code collectively within a single
+               unit.
+			   through getters and setters methods .
+ Inheritance-
+ Polymorphism-
+ ___________________________________________________________________________________________________________________
+ JPF- DAY 2
+ 1.Final keyword- 
+    with variables- If a variable is made final then reinitialization of the variable is not allowed.
+	                If you make static,non-static variable as final then initializing it becomes mandatory.
+	with methods- then ovveriding is not allowed.
+	with class- If you make a class as final then inheritance is not allowed.
+	
+2. static modifier/static keyword- It can be applied to a block,variable,method and class.
+                         Static variable- are shared b/w different objects of the class.there is only one copy
+						                  of static variable maintained for all the objects of the class.
+					     static class-
+						 static block- get loaded when the class is first loaded, even before the main method. 
+						                 static{
+						                     .....
+						                    }
+					    static methods-
+						
+						
+3. Variable arguments - Internally it uses an array to process the variable arguments.
+                        One one varargs arguments is allowed in amethod.
+						In case of more than one argument then varargs should be the last argument of the method.
+						
+						Syntax: method(int... b){
+						
+						         //method body
+						        }
+4.Enumerated types?Enums: collection of constants.
+                          It is non primitive datatype,
+						  we can define constructors,methods,and variable in an enum.
+____________________________________________________________________________________________________________________
+JPF-DAY 3
+
+1.Java Libraries:    Java comes with  a good set of API(Application prog interface).
+                      It is a set of all classes that are part of jdk.
+					  
+					  
+	Object class: It is the super class of all the classes.
+	   boolean equals(object)--> Compares two objects for equality.
+	   Class getClass()-->Returns the class to which the object belongs.
+	   int hashCode()-->Represents a unique ID for the object.
+	   String toString()--> Gives the String representation of any object.
+	   
+	   
+	  Wrapper class- normally int i = 10;
+	         IN wrapper class- Integer i = 10; Float, Double Character........
+	 
+	 wrapping or boxing- Storing a value inside a object(converting primitive to wrapper).
+	 unboxing- reading the value from the object (vice versa).
+	 
+	 
+  string handling- String is an object that represents a sequesnce of character values.
+                    String s = "sai";
+					char ch[] = {'s','p'};
+					String s = new String(ch);
+					
+			Mutable: somethimg that keeps on changing. ex - age of person
+			  Immutable: ideally not chan ge. ex- cunningness of  a person.
+			  
+			  
+      StringBuffer = It is used to create mutable String objects.
+	  StringBuilder: It is also used to create the mutable objects but it is not- synchronized.
+____________________________________________________________________
+
+Exceptions- Whenever a bad user inpurt is given program execution will halt abruptly.
+  Ex-1/0
+
+Ex
+
+using try/catch blocks
+                                                                 throwable
+                                                                      |
+--------------------------------------------------------------------------------------------------------------------------------------------------------|
+                        |                                                                                                                         Error
+                      Exception
+                         |
+|-------------------------------------------------------------------------------------|
+|Compile time/Checked exceptions                                                     |Runtime/unchecked exceptions
+    1.FileNotFound exception                                                      1.arithmetic exception
+    2.SQL exception                                                               2.NullPointerException
+    3.IO exception etc.                                                           3.NumberFormatException                                                          
+                                                                                  4.ArrayIndexOutOfBoundException etc
+
+
+Throw Keyword-Java allows us to explicitly generate or throw exceptions using the throw keyword
+Ex
+Throws keyword-propagate and handle the exceptions elsewhere! with help of try catch 
+Ex
+user-Defined exceptions-will be generating our own exceptions.
+
+
+________________________________________________________________________________________________
+
+Generics- Generics gives us the flexibility to dynamically allocate the datatype in the program.
+
+
+
+_____________________________________________________________________________________________________________________
+dateTimeAPI-  prebuilt. 
+
+Localdate-
+LocalTime-
+LocalDateTime-
+ZonedTime-
+Period-
+
+_________________________________________________________________________________________________________________________
+Collections framework-  Collection is a framework which has readily available logic in it so that we can deal with data structures.
+                They have ready to use classes and interfaces.
+List Interface- Arraylist.
+                LinkedList
+				Stack
+				Queue
+				
+
+Set-
+
+Queue- Priority queue, Deque
+
+Map-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Drawbacks of array-they can not grow and shrink dynamically. In addition, they do not have an integrated algorithm for sorting or searching.
+1.List(interface)=arrayList,Vector,linkedList
+  -ArrayList- 1.Internally,it is implemented as dynamic array
+              2.Initial size of arraylist is fixed but when we exceed the size ,initial size automatically increases.
+              3.maintains insertion order.
+              4.can consist of duplicate elements.
+Adv- reading of data would give us best performance.
+disadv-insertion of data in between of the array list will result in bad performance.
+
+Traversing through list-for loop,foreach loop,iterators
+
+LinkedList-
+
+
+2.Set-Its an interface.
+      does not maintain any insertion order.
+      cannot contain duplicate values.
+
+HashSet-Uses hash table tos store elements.//table is used to store data
+        Will contain only unique elements.
+        Does not maintain insertion order.
+        null is allowed.
+Linkedhashset-maintains insertion order.
+              can contain only unique elements.
+              null is allowed.
+TreeSet- sort data in ascending order.
+          null is not allowed
+Exs
+
+3.map-There is a requirement of linking student ID with their corresponding list of courses. 
+   (data is stored in key-value pairs) (101,jaya)key=101,value=jaya.
+Working with the keys:   
+
+------>Set setOfKeys = map.keySet();
+ 
+
+Get the Collection of values:  
+
+----->Collection valueCollection = map.values();
+ 
+
+Get the set:   
+
+ --->Set<Entry> setOfEntries = map.entrySet();
+
+The java.util.Map.Entry interface provides two useful methods:
+
+getKey() 
+
+getValue()

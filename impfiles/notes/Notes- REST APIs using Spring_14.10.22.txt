@@ -1,0 +1,499 @@
+REST APIs using Spring - 14/10/2022 & 17/10/2022
+
+*********************************************************************************	
+Spring REST - Lex Course Link :
+********************************************************************************* 
+
+Video Based Course:
+https://lex.infosysapps.com/web/en/app/toc/lex_auth_0131423960053268483924/overview
+
+Free Flow Course:
+https://lex.infosysapps.com/web/en/app/toc/lex_auth_012731900963905536190/overview
+
+*********************************************************************************
+Pre requisite
+*************
+Spring 5.x
+1) JDK > 8 , 11, 14, 16, 17,18, 19
+2) IDE : Spring Tool Suite
+		 Eclipse
+3) MySQL
+4) Postman /SoapUI
+
+:::::::::::::::::
+5) Java Fundamentals(Class/Objects/Generics)
+
+6) Spring Essentials - Annotations/Autowiring/AutoScanning
+
+7) Spring Data Essentials
+
+8) Maven Essentials	
+
+******************************************************************************
+Post Session
+************
+1. Lex Self Assessment :(Mandatory)
+***********************
+Link : https://lex.infosysapps.com/web/en/viewer/iap/lex_auth_0131402494768578563803?collectionId=lex_auth_0131423960053268483924&collectionType=Course
+Date : 17th Oct 
+Score > 60%
+Re-attempt - after 24 hours 
+*********************************
+2. Courses
+*********************************
+Spring Microservices
+
+:::::::::::::::::::::::::::::::::
+3. Certification
+*********************************
+
+Infosys Certified Spring REST Professional
+Pattern :
+	30% MCQ
+	70% Hands-on
+Passing Score > 70%
+
+*******************************************************************************
+Learning Objectives - REST APIs using Spring
+*******************************************************************************
+ - RESTful web service development using Spring Framework
+
+* Web services
+* Develop RESTful endpoints using Spring REST
+* Request Processing- Understand how to process URI parameters
+* Consumes and produces data in different formats
+* Handle exceptions and errors if it arises.Data Validation
+* Version support
+* Cross-Origin requests
+* Consume RESTful services
+* Basic authentication mechanism of Spring Security
+* Documenting Spring REST APIs using OpenAPI (Swagger)
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+* Web services
+***************************************************************************
+-> Need of Webservices
+--------------------------
+	appl are developed with different languages /platform
+	enable communication
+	interoperability
+		
+-> SOA - Service Oriented Architecture
+--------------------------------------
+	architectural style
+	each independent component /functionality -> service
+		
+eg: 		
+Air India
+Air Arabia
+	10 services
+		expose-> 4services
+			service1 -> URI -> resource 
+						Booking the ticket
+		    service2
+						payment
+	so, 3rd party appln - makemytrip/cleartrip
+		
+		Principles of SOA
+			Loosely Coupled
+			Interoperable
+			Scalable
+			Manageable
+			Reusable
+			
+		Implementations
+			Jini
+			CORBA
+			Webservices
+	
+-> What is Webservices?
+----------------------------------
+	s/w system designed to support interoperability
+	adhering the principles SOA
+			
+-> Types of Webservices
+-----------------------------
+		~ SOAP 
+			Simple Object Access Protocol
+			Xml based
+						
+			* 3 factors in SOAP
+				wsdl- web service desciption language
+				uddi - universal description discovery and integration
+				soap messages
+				
+			* Developing SOAP Webservices in Java
+				JAX-WS API
+			
+			* Limitations
+*****************************************************************************				
+		~ REST - What?
+			REpresentational State Transfer 
+			
+			* Principles
+				Uniform Interface
+				Client/Server
+				Stateless
+				Layered System
+				Cacheable
+				Code on demand(Optional)
+				
+			~ Rest Vs SOAP
+			
+-> Developing Restful Webservices in Java
+---------------------------------------------
+		~ JAX-RS
+		~ Spring REST
+			
+			* Spring/Spring Boot Framework - Modules
+				Core
+				
+				Web--> Spring -> REST Resource
+				
+				Data Access
+				
+				Testing
+				
+		* Richardson Maturity Model	
+	    -------------------------------------
+			~ Need
+				to Guage APIs
+				
+			~ Levels of RMM
+			Level 0 - single URI, single http verb(POST), pox
+			Level 1 - multiple URI, single http verb(POST), multiple data formats
+			Level 2 - multiple URIs, different HTTP verbs, multiple data formats
+			Level 3 - multiple URIs, different HTTP verbs, multiple data formats, Hypermedia
+			
+			URI+ HTTP Verb+ Hypermedia -> RESTful API
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::			
+* Develop RESTful endpoints using Spring REST
+***************************************************************************
+	-> Internals of Spring REST -175
+	------------------------------------
+		Dispatcher Servlet
+		Resource Mapper
+		Controller-> class
+						
+	-> Creating a REST API -178
+	----------------------------
+	Spring Boot -> 
+		Spring Intializr
+		STS/Eclipse
+	http://localhost:8090/infytel	
+	
+		1. Spring Web Application
+		**************************
+			pom.xml-> 
+				spring-boot-starter-web 
+				spring-boot-starter-data-jpa
+				mysql-connector
+				
+			application.properties
+			    server.port=8090
+				server.servlet.context-path=/myapp
+				
+				eg: http://localhost:8090/myapp/customers
+					<-------base url----------><-resource->
+					
+		2. Rest Resource - class
+		***********************
+		@RestController -> @Controller -> mark class as presentation layer		
+										  Controller Class
+								+
+						   @ResponseBody->  send anything back
+						   
+		class that needs to be exposed as a RESTful resource
+			eg : CustomerController
+				 OrderController
+				 PaymentController
+		
+		3. Http Service Methods
+		***************************
+			Handler Methods
+			
+			GET-> Read  -> @GetMapping
+			POST-> Creating resource -> @PostMapping
+			DELETE-> Delete -> @DeleteMapping
+			PUT/PATCH -> Update -> @PutMapping
+				
+					
+			Managing Http Requests 
+			------------------------
+				URI Mapping -> correct controller
+					@RequestMapping
+					identify a resource 
+					mapping a resource against a URI
+					used at controller class level (or) handler method level
+					
+			eg1:	class level	
+				
+				@RestController
+				@RequestMapping("/customerservice")
+				public class CustomerController{
+				
+				@GetMapping
+				public String fetchCustomer(){
+				
+				}
+				
+				sample url: http://localhost:8090/myapp/customerservice
+				
+			eg2: method level
+			
+				@RestController
+				@RequestMapping("/customerservice")
+				public class CustomerController{
+				
+				@RequestMapping(method=RequestMethod.POST)
+				//@PostMapping
+				public String updateCustomer(){
+				
+				}
+					
+				}
+				
+		4. Configure and Deploy - Demo 1
+		
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;
+
+* Handling requests in RequestBody
+- @RequestBody
+- Mapping HTTP request body to a Java object
+
+* Consuming different forms of data
+- JSON (JavaScript Object Notation)
+- XML (eXtensible Markup Language)
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+* How to process URI parameters
+****************************************************************************
+
+http://<<hostname>>:<<portno>>/AppName/resource/data
+<------------Base URI----------------><URIMapping>
+
+eg : http://XYZhost:8080/infytel/customers/1001
+
+:::::::::::::::::::::::::::
+- Path Variables
+:::::::::::::::::::::::::::
+
+	-> / separated
+	-> May occur at the end of URI or May occur any where in the mid of URI
+
+	-> syntax: http://<<hostname>>:<<portno>>/context-path/resource/{data}
+	eg : http://XYZhost:8080/infytel/customers/9876543210
+		 http://XYZhost:8080/infytel/customers/1001/calldetails/9876543210
+	
+	-> use @PathVariable annotation
+	
+Impln: 	
+	@PutMapping(value = "/{custId}") 
+	public ResponseEntity<CustomerDTO> updateCustomer(
+			@PathVariable("custId") int customerId,
+			@RequestBody CustomerDTO customerDTO) {
+	}
+Demo
+:::::::::::::::::::::::::::::::::::::::::::
+- Query Parameters/Request Parameters
+:::::::::::::::::::::::::::::::::::::::::::
+	-> ? to delimit the first request parameter
+	-> & to delimit the subsequent request parameter
+	
+	-> syntax: http://<<hostname>>:<<portno>>/AppName/resource?name=value
+	eg: http://XYZhost:8080/infytel/calldetails?calledBy={phoneNo}
+		http://XYZhost:8080/infytel/calldetails?calledBy={phoneNo}&calledOn={date}
+	
+	-> @RequestParam annotation
+Demo
+:::::::::::::::::::::::::::::::::::::::::::	
+- Matrix Variables
+:::::::::::::::::::::::::::::::::::::::::::
+	-> ; separated
+	-> show different dimension of the same resource
+	-> May occur at the end of URI
+	-> May occur any where in the mid of URI
+	-> More readable and easily interpreted
+	-> syntax: http://<<hostname>>:<<portno>>/AppName/resource/query;name=value1,value2,value3/path
+		eg: http://XYZhost:8080/infytel/plans/query;localRates=1,2,3/plan
+			http://XYZhost:8080/infytel/plans/plan;localRates=1,2,3;nationalRates=3,4,5/data
+	-> @MatrixVariable annotation
+Demo	
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+* Exception Handling and Data Validation
+****************************************************************************
+- Exceptions?
+- Exception Handling in Spring REST	
+	Annotations
+		@ExceptionHandler
+		-> Applied at Method Level
+	
+		CustomerNotFound
+		xyz
+		
+		@RestControllerAdvice
+		-> exception handling is made centralized
+		-> applied at class level
+		-> have multiple exception handler methods
+Demo		
+:::::::::::::::::::::::::::::::::::::::::::
+- Data Validation
+::::::::::::::::::::::::::::::::::::::::::::
+	validate the data
+	customize the validation failure messages
+
+- use Java Validation API
+eg : Hibernate Validator
+
+- Annotations
+@NotEmpty
+@NotBlank
+@Email
+@Pattern 
+@Positive
+@Digits
+@Min
+@Max
+@Past
+@PastOrPresent
+@Future
+@FutureOrPresent
+
+- i) Validation of Data that comes in RequestBody
+	-> apply validation annotations DTO class attributes
+	-> use @Valid annotation along with @RequestBody
+	-> Data Validation Exception Flow:
+	1. Complete set of data will get validated
+	2. ObjectError gets created and populated with error messages, if validation fails
+	3. MethodArgumentNotValidException will be thrown for the validation failure
+	4. Handle the exception thrown
+	5. Intimate the client with appropriate message and status code
+
+- ii)Validation of Data that comes in URI param
+	-> @Validated along with Controller Class
+	-> Data Validation Exception Flow:
+	1. Complete set of data will get validated
+	2. ObjectError gets created and populated with error messages, if validation fails
+	3. ConstraintViolationException will be thrown for the validation failure
+	4. Handle the exception thrown
+	5. Intimate the client with appropriate message and status code
+
+Demo
+**************************************************************************
+Versioning
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+- Versioning?
+- Types of versioning
+	URI Versioning
+	Custom Header Versioning
+	Accept Header Versioning
+	Request Parameter Versioning
+Demo
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+Consuming RESTful services
+******************************************************************************
+- Java way of consuming RESTful services
+
+Client--> Server
+Restful Appln -------------> RESTful Service
+(Rest Client)
+
+1) Write client code using plain Java
+
+-> java.net package
+-> HttpConnection 
+
+2) Writing client code using JAX-RS API
+-> ClientBuilder
+Client
+WebTarget
+
+3) Spring REST
+- Introducing RestTemplate <----REST client
+	class<--- web module
+	
+	Constructors of RestTemplate 
+	 
+- Using RestTemplate methods for service consumption
+	Methods of RestTemplate
+	
+	
+	GET-> 
+		getForObject()
+		getForEntity()
+	POST
+		postForObject()
+		postForEntity()
+	PUT
+		put()
+	DELETE
+		delete()
+
+Demo
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+CORS - Cross Origin Resource Sharing
+*********************************************************************************
+- What are origin? 
+(Scheme -> http
+Host->localhost/hdfc.com/infosys.com
+Port-> 8080,9000
+) 
+
+- cross origin? url cross-origin
+
+- What is CORS support?
+enabling cross-origin request to get processed
+server side - CORS Support
+
+eg :
+
+UI appln-> Client-> http://localhost:8086/infytel_CORS_demo_client
+	Server -> Tomcat Server
+			  8086
+
+http://localhost:8090/infytel/customers<--- CORS
+ 
+
+- How its enabled in Spring REST?
+	i) At class level-> Rest Controller class
+	ii) At method level-> RestController method
+	
+- @CrossOrigin
+
+	iii) At application level
+- Implementation - Demo
+	implements WebMvcConfigurer in Bootstrap class
+	Override-> addCorsMappingMethod()
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+Securing Spring Rest APIs
+****************************************************************************
+	Understanding Software Security
+	Need
+	Software Security
+		OAuth Framework
+		H/w based Tokens
+		Basic Authentication
+	Spring REST Security - Demo
+		Default 
+		Basic Authentication
+		i) inclusion security dependency
+		ii) configuration class
+			extends WebSecurityConfigurerAdapter
+				@Overide
+				configure()-> paramaters configuation
+				
+				AuthenticationManageBuilder
+					in-memory authentication
+					username
+					pwd<- PasswordEncoder
+					role
+ 
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+Documenting Spring REST APIs
+	API Documentation
+	API Documentation Tools
+	Implementation - Demo using Swagger
+		springdoc-openapi-ui
+		@OpenAPIDefinition
+		@ApiResponse

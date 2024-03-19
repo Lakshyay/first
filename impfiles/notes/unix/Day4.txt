@@ -1,0 +1,366 @@
+if Introduction to Unix:
+https://lex.infosysapps.com/en/app/toc/lex_auth_01265419704839372873/overview
+Unix Playground:
+https://lex.infosysapps.com/en/app/toc/lex_auth_012761083203747840518/overview
+JSLinux:
+https://bellard.org/jslinux/vm.html?cpu=riscv64&url=fedora33-riscv.cfg&mem=256
+Basics of Shell Scripting:
+https://lex.infosysapps.com/en/viewer/web-module/lex_auth_012653415225409536409?collectionId=lex_auth_01265419704839372873&collectionType=Course
+
+advanced unix : https://lex.infosysapps.com/web/en/app/toc/lex_auth_0126350006109634564740/overview
+
+
+certification links :
+
+Unix associate (objective type questions) : https://lex.infosysapps.com/web/en/app/toc/lex_auth_0136295351520542721648/overview
+
+Infosys Certified Unix Programmer (hands-on) : https://lex.infosysapps.com/web/en/app/toc/lex_auth_0130436201895362561060/overview
+
+--------------------------------------------------------------------------------------------------
+Archiving:
+tar command:
+archive the files with .tar extension 
+tar option output_file.tar input_file 
+-cvf - create archive for the files 
+-tvf - list all files in .tar extension 
+-xvf - to extract all files 
+-rvf - append file for the existing tar file 
+[er1118220@BL1UL056 Aug_22]$ tar -cvf access.tar access.log
+access.log
+[er1118220@BL1UL056 Aug_22]$ tar -cf emp.tar emp
+[er1118220@BL1UL056 Aug_22]$ ls
+access.log  a.txt    drawing  emp.tar    flowers.txt  marks  product.txt
+access.tar  case.sh  emp      file2.txt  if.sh        music
+[er1118220@BL1UL056 Aug_22]$ tar -xvf emp.tar
+emp
+[er1118220@BL1UL056 Aug_22]$ ls
+access.log  a.txt    drawing  emp.tar    flowers.txt  marks  product.txt
+access.tar  case.sh  emp      file2.txt  if.sh        music
+[er1118220@BL1UL056 Aug_22]$ tar -xf emp.tar
+[er1118220@BL1UL056 Aug_22]$ tar -xvf emp.tar
+emp
+[er1118220@BL1UL056 Aug_22]$ ls
+access.log  a.txt    drawing  emp.tar    flowers.txt  marks  product.txt
+access.tar  case.sh  emp      file2.txt  if.sh        music
+
+cpio command:
+used to archive the files 
+-ov - create an archive 
+-idv - extract files from archive 
+-F - create/extract tar 
+-it - list the archive 
+
+creating >
+cpio -ov > filename.cpio 
+
+extract 
+cpio -idv < filename.cpio 
+
+[er1118220@BL1UL056 Aug_22]$ cpio -ov > all.cpio
+access.log
+access.log
+flowers.txt
+flowers.txt
+marks
+marks
+2 blocks
+[er1118220@BL1UL056 Aug_22]$ ls
+access.log  all.cpio  case.sh  drawing  emp  file2.txt  flowers.txt  if.sh  marks  music  product.txt
+[er1118220@BL1UL056 Aug_22]$ cpio -it all.cpio
+Found end of tape.  To continue, type device/file name when ready.
+[er1118220@BL1UL056 Aug_22]$ cpio -ivt all.cpio
+Found end of tape.  To continue, type device/file name when ready.
+^C
+[er1118220@BL1UL056 Aug_22]$ cpio -it -F all.cpio
+access.log
+flowers.txt
+marks
+2 blocks
+----------------------------------------------------------------------------------
+VI Editor:
+Command Mode- keys are interpreted as command
+Insert Mode-keys are interpreted as raw text
+Escape Mode- saving and quitting the editor 
+
+Command Mode:
+(n)(h/j/k/l)- left/down/up/right
+copy and paste 
+(n)yy
+p-paste after the cursor
+P-paste before the cursor 
+
+Delete:
+(n)x - delete n chars after the cursor
+(n)X - delete n chars before the cursor 
+(n)dd - delete n lines 
+
+Insert Mode:
+i - insert before the cursor
+I- insert data at the start of current line
+a - insert after the cursor 
+A - insert data at the end of current line
+o - starts new line after the cursor
+O - starts new line before the cursor 
+
+Escape Mode:
+esc key 
+:wq - write and quit
+:w - write alne but no quit 
+:q - quit only no saving 
+:q! - quit the editor forcefully 
+-----------------------------------------------------------------------------------------------
+Basics of shellscripting:
+filename.sh 
+execution:
+1. sh filename.sh 
+invkes a subshell,execute and give the o/p back in parent shell 
+2. . filename.sh 
+execute and give o/p in the same shell 
+3. path variable 
+
+Shell Variables:
+to store the data 
+1.user defined variabless
+2.arrays
+3.special variables 
+
+Command Substitution:
+[er1118220@BL1UL056 Panasonic]$ var=ls
+[er1118220@BL1UL056 Panasonic]$ ech $var
+bash: ech: command not found...
+Failed to search for file: Failed to download gpg key for repo 'mongodb-org-5.0': Curl error (6): Couldn't resolve host name for https://www.mongodb.org/static/pgp/server-5.0.asc [Could not resolve host: www.mongodb.org]
+[er1118220@BL1UL056 Panasonic]$ echo $var
+ls
+[er1118220@BL1UL056 Panasonic]$ var=`ls`
+[er1118220@BL1UL056 Panasonic]$ echo $var
+access.log all.cpio backup.tar day2 Day3_P Emp_details example.sh ex.sh ex.txt file1 file2 file3 flowers.txt marks product.txt shell.sh
+
+a=10
+b=20
+c=$(echo "$a+$b"|bc)
+echo $c
+
+d=`expr $a + $b`
+echo $d 
+
+
+e=$((a+b))
+echo $e
+
+Req:
+print hello
+read the name from user
+and store in a file called names.txt
+
+[er1118220@BL1UL056 Panasonic]$ cat name.sh
+echo "Hello"
+read -p "Enter your name: " name
+echo $name >> names.txt
+echo $name | cat >> names.txt
+
+[er1118220@BL1UL056 Panasonic]$ cat names.txt
+swetha
+Hello
+
+
+dhana
+swetha
+
+Arrays:
+array=()
+[er1118220@BL1UL056 Panasonic]$ array=(10 20 "unix" "infy" 30)
+[er1118220@BL1UL056 Panasonic]$ echo ${array}
+10
+[er1118220@BL1UL056 Panasonic]$ echo ${array[1]}
+20
+[er1118220@BL1UL056 Panasonic]$ echo ${array[3]}
+infy
+[er1118220@BL1UL056 Panasonic]$ echo ${array[*]}
+10 20 unix infy 30
+[er1118220@BL1UL056 Panasonic]$ echo ${#array[*]}
+5
+[er1118220@BL1UL056 Panasonic]$ echo ${#array[@]}
+5
+[er1118220@BL1UL056 Panasonic]$ echo ${array[2]}
+unix
+[er1118220@BL1UL056 Panasonic]$ echo ${#array[2]}
+4
+
+Special Varaibles:
+$0 - current script name 
+$1 - frst argument 
+$2 - second argument 
+$3 - third argument
+.....
+$# - no. of argumnets 
+$@ - show command line args
+$? - exit status of prev successful command 
+
+add(int a,int b)
+{
+int c
+c=a+b
+retunr c
+}
+
+add(10,20)
+
+sh filename.sh 10 20 30 
+sh $0 $1 $2 $3 .....
+[er1118220@BL1UL056 Panasonic]$ cat spl.sh
+echo "The filename is $0"
+echo "The first argument is $1"
+echo "The sesond argument is $2"
+echo "The no. of arguments present is $#"
+-----------------------------------------------------------------------------------------
+Control Structures:
+1.Selective - if family-->simple if,if else, if elif else ,case 
+2.Iterative - while,untill and for 
+
+simple if:
+if [[ condition ]]
+then 
+	//logic 
+fi
+
+Realtional Operators:
+>	-gt
+<	-lt
+>=	-ge
+<=	-le
+==	-eq
+!=	-neq
+
+a=30
+b=20 
+if [ $a -ge $b ]
+then
+	echo "$a is greater than $b"
+fi
+
+if else:
+if [ condition ]
+then 
+	//logic 
+else 
+	//logic 
+fi
+
+echo $1
+if [ $1 -lt 10 ]
+then 
+	echo "Its a single digit"
+else
+	echo "Its a double digit"
+fi
+
+if else if:
+if [ condition ]
+then 
+	//logic
+elif [ condition ]
+then 
+	//logic 
+.......................
+else 
+	//logic 
+fi
+
+case:
+case condition in 
+	case 1) //logic ;;
+	case 2) // logic ;;
+	*) //logic ;;
+esac
+
+choice=$1
+case $choice in  
+	"carrot") echo "Its a veggie" ;;
+	"spinach") echo "Its a leafy veggie" ;;
+	"apple") echo "Its a fruit" ;;
+	*) echo "Not found" ;;
+esac
+---------------------------------------------------------------------
+Iterative:
+while:
+the loop will execute when the condition is true
+when the condition is false it will terminate 
+
+while [ condition ]
+do 
+	//logic
+done 
+
+0 1 2 3 4 5 
+
+a=0
+while [ $a -le 5 ]
+do 
+	echo $a
+	a=`expr $a + 1`
+done 
+
+
+Iteration 1:
+a=0
+a<=5
+0<=5
+prit a
+0
+a=1
+Iteration 2:
+1<=5
+1
+2
+2<=5
+2
+3
+5<=5
+5
+6
+6<=5 false 
+
+untill:
+the loop will execute when the condition is false
+when the condition is true it will terminate
+0 1 2 3 4 5 
+
+echo "until loop"
+i=10
+until [ $i == 1 ]
+do
+    echo "$i is not equal to 1";
+    i=$((i-1))
+done
+echo "i value is $i"
+echo "loop terminated"
+
+a=0
+0>5 
+0
+1
+1>5
+2>5
+5>5
+6>5
+
+for loop:
+method1:
+for i in 1 2 3 4 5 
+do
+	echo $i
+done 
+
+method2:
+for(declaration;condition;incr/decr)
+
+for((i=0;i<=5;i++))
+do
+	echo $i
+done 
+
+a=(10 20 30 40 50)
+for((i=0;i<=5;i++))
+do
+        echo ${a[i]}
+done

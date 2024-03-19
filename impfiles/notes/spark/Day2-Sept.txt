@@ -1,0 +1,211 @@
+						Advanced Spark - Day 2
+*************************************************************************************************************************
+
+LEX Course Link : https://lex.infosysapps.com/web/en/app/toc/lex_auth_013702212822147072126/overview
+
+
+
+
+Prerequisites
+-------------
+HDFS commands
+Basic shell scripting
+Java/Scala programming
+SQL 
+
+	Courses on Lex:
+		Hadoop Framework				
+		Scala Programming
+		Spark Framework 
+
+
+Session Plan
+-------------
+Day 1: Spark Execution Modes, Execution Mechanisms,Demos- DataFrame API, JDBC Connection, UDF, UDAF ,HiveUDF with Spark, Web UI (SL)
+
+Day 2: Partitioning & bucketing, Join strategies, Performance tuning,spark security,debugging
+
+
+Batch Data Analysis --------------spark core(RDD, optimization), spark sql(DataFrame, catalyst optimizer)
+
+query
+	---------> catalyst Optimizer ---------------> core engine
+DF
+
+reduceByKey(), groupByKey()
+DF reader and writer API
+
+
+
+
+
+
+
+
+
+
+
+Apache Spark - Day 2
+---------------------
+
+
+
+
+Partitioning and Bucketing
+
+1000 records
+
+DF ---> sql(select * from songstable where rating =4.0)
+
+full table scan ---1000
+
+partition
+
+partition - rating(1.0,2.0,3.0,4.0,5.0)
+
+P0	P1	P2	P3	P4
+R=1	R=2	R=3	R=4	R=5
+
+100	100	200	300	300
+
+CUSTOMER ID
+P1	P2	.... P1000
+1	1		1
+
+rating		1.0	---> 100
+		2.0 ---> 500
+		3.0 --> 4000
+
+repartition()
+sc.textFile(input file path,partitions)
+coalesce(2)
+
+Bucketing
+
+	4 BUCKETS --> RATING		
+
+B1	B2	B3	B4
+
+bucketBy()
+
+
+
+
+Join Strategies
+----------------
+
+select col1,col2,...from t1 join t2 on t1.common col = t2.commoncol;
+
+1. Shuffle Hash Join
+2. Broadcast Hash Join		default
+3. Sort Merge Join
+
+
+file1		file2
+10GB		5MB
+
+broadcast hash join ---> one of the file size < threshold 10MB
+Sort Merge Join
+Shuffle Hash Join	--> expensive
+
+val data1=Seq(10,20,20,30,40,10,40,20,20,20,20,50)
+val df1=data1.toDF("id1")
+val data2=Seq(30,20,40,50)
+val df2=data2.toDF("id2")
+spark.conf.set("spark.sql.autoBroadcastJoinThreshold",-1)
+
+val joindf=df1.join(df2, $"id1" === $"id2")
+joindf.show
+joindf.queryExecution.executedPlan
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Spark Performance Tuning Techniques
+-------------------------------------
+
+
+1. Partition & Bucketing
+2. Caching and persistence--> cache(),persist()
+3. Broadcast variables---> lookup, join
+				F1		F2
+			DN1	B1 (B4)		B4	DN4
+			DN2	B2 (B4)
+			DN3	B3 (B4)
+				
+
+B4--> BROADCAST--READ ONLY
+
+4. DataFrame---> catalyst optimzer
+		RDD
+
+5. Serialization
+6. Memory management---> spark.executor.memory,spark.driver.memory
+7. Garbage Collection
+8. Monitoring
+
+
+
+
+
+
+
+
+
+
+
+
+Security in Spark
+--------------------
+
+
+1. secure Web UI
+2. Authentication-Kerberos		username, paasword
+3. Authorization --> Ranger
+4. Encryption
+5. Secure cluster communication
+6. Data Redaction--> rules to mask sensitive data
+7. secure external data sources
+8. auditing and monitoring
+9. secure credential management
+
+
+
+
+
+Debugging
+---------
+
+1. logging and print statements-log4j/slf4j
+2. WebUI
+3. Spark History Server
+4. Exception Handling
+5. Interactive debugging
+6. interactive shell
+7. data sampling-sample(),takeSample()
+8. External debugging tool
+
+
+
+
+
+		

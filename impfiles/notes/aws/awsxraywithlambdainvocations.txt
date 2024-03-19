@@ -1,0 +1,115 @@
+
+1
+Tracing AWS Lambda Invocations using AWS X-Ray
+Objective -
+Through this demonstration you will learn how to visualize, and trace invocations made to
+Lambda Functions using AWS X-Ray service.
+Pre-requisites -
+You must have a valid AWS account. You need to sign-in to the account.
+IAM service Permissions required for this demonstration –
+• AWS Lambda.
+• Amazon API Gateway.
+• AWS CloudWatch (for viewing logs).
+• AWS X-Ray.
+Architecture -
+As per the above architecture diagram, a HTTP API is created using Amazon API Gateway
+service.
+User invokes the API, through a HTTP GET request by passing the required query string
+parameters.
+Upon receiving the request, the API Gateway invokes the Lambda Function deployed by passing
+the query string parameters in the GET request.
+Based on the request from API Gateway, the Lambda function generates a successful response
+or an error, and the same is passed to the user via the API Gateway.
+Active tracing using AWS X-Ray is enabled which allows every invocation made to the Lambda
+function to be recorded in X-Ray, and various trace data, errors can be visualized to debug
+applications.
+Below are the steps listed to perform this demonstration.
+Step-1: Creating and configuring Lambda Function –
+Login to the AWS Management console, select a region of choice and navigate to Lambda
+service.
+Create a Lambda function with Runtime as Python 3.8 and default Lambda Permissions.
+Under Code section add the below Lambda Code.
+Once done deploy the code.
+import json
+def lambda_handler(event, context):
+operand_1 = event['queryStringParameters']['firstoperand']
+operand_2 = event['queryStringParameters']['secondoperand']
+operation = event['queryStringParameters']['operator']
+if(operation.lower() == 'plus'):
+output_result = int(operand_1) + int(operand_2)
+operation = "Addition"
+elif(operation.lower() == 'minus'):
+output_result = int(operand_1) - int(operand_2)
+operation = "Subtraction"
+elif(operation.lower() == 'divide'):
+output_result = int(operand_1) / int(operand_2)
+operation = "Division"
+elif(operation.lower() == 'multiply'):
+output_result = int(operand_1) * int(operand_2)
+operation = "Multiplication"
+else:
+output_result = "Incorrect operation requested"
+output_response = {}
+output_response['Result'] = output_result
+output_response['OperationPerformed'] = operation
+response_object = {}
+if(output_result=="Incorrect operation requested"):
+raise Exception
+else:
+response_object['statusCode'] = 200
+response_object['headers'] = {}
+response_object['headers']['Content-Type'] = 'application/json'
+response_object['body'] = json.dumps(output_response)
+return response_object
+Code Walkthrough and explanation –
+The request event from API is stored in the “event” variable.
+Query String Parameters passed from the HTTP GET request are –
+• firstoperand.
+• secondoperand.
+• operator.
+Basic Validations implemented –
+• Allowed operator values – (“plus”, “minus”, “multiply”, “divide”)
+If the validations don’t pass, then an exception is raised to simulate error response which is
+sent back to the user/client via the API Gateway.
+Upon successful validation check, the statuscode is “200” and the result response is sent back
+to the user/client via the API Gateway.
+Note – Sample Code for understanding traces in AWS X-Ray, code can be modified to fit various
+validations and cases.
+The code can be copied from the resource – “Python Lambda Code” at the end of this module.
+Once code is deployed to Lambda, under Configuration Tab -> General Configuration, set
+timeout to be 1 minute.
+To enable tracing using AWS X-Ray, under Configuration Tab -> Monitoring and operations
+tools, set Active Tracing to be enabled.
+This completes the setup for the Lambda function.
+Step-2: Creating API Gateway –
+After creating the Lambda function, a HTTP API using API Gateway service is to be created to
+invoke the Lambda function.
+Navigate to API Gateway service in the same region to create the same.
+Build a HTTP API, with Lambda Integration.
+Configure a GET request route, to invoke the Lambda function.
+Define a Stage and review and create the API.
+Once done copy the Invoke URL, to test and invoke the Lambda function.
+Step-3: Testing –
+Invoke the Lambda function, by using the API URL.
+A GET Method has to be sent along with the API request, as shown (can be achieved using
+either PostMan or via a browser URL invocation) –
+<api-invoke-url>/route?QueryStringParameters
+Sample Invocation –
+https://w86jghzt36.execute-api.us-east-2.amazonaws.com/simple-
+calculator?firstoperand=10&secondoperand=20&operator=plus
+This triggers the Lambda function and the response is displayed in the browser. Trigger the
+lambda function a couple of times, for valid and invalid data to visualize the traces in AWS X-
+Ray.
+After sending requests, navigate back to the Lambda function created –
+Under Monitor tab -> Traces, you can visualize the traces for each invocation for your Lambda
+function.
+You can view the requests made to the function, and the percentage of requests that have
+failed due to error.
+To view the Traces, navigate to AWS X-Ray service and click on Traces Tab.
+Click on a Trace from the list to view more details about it.
+This completes this demonstration on Tracing Lambda Invocations using AWS X-Ray service.
+Step-4: Resource Cleanup –
+To avoid accidental charges, it is advisable to delete the resources created.
+To delete the resources created, navigate to AWS Lambda service, and delete the Lambda
+Function created in Step – 1, and navigate to AWS API Gateway service, and delete the HTTP
+created in Step – 2.

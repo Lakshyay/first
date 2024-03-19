@@ -1,0 +1,35 @@
+Login to pod:
+	->docker exec -it nginx_ua /bin/bash
+If you do not want to login, but need to execute the command inside the container:
+	->to docker exec -it nginx_ua df -h
+
+
+
+Logging in to Pod on Kubernetes Cluster (AKS/EKS/GKE):
+	A pod can contain one or more containers, and these containers are typically deployed together on the same host and share the same network namespace. This means that they can communicate with each other using localhost, and they share the same IP address and port space.
+
+1. Login to kubernetes cluster.
+
+2. List the running pods in the current namespace. In the READY column, “1/1” indicates that pod is hosting only one container. Always use “-n” switch to explicitly specify the namespace.
+
+uxpro-$ kubectl get pods 
+NAME                     READY   STATUS    RESTARTS   AGE
+nginx-6799fc88d8-8r9nt   1/1     Running   0          110s
+                                                                               
+uxpro-$ 
+
+3. Login to pod using the following command. (ex: kubectl exec -it POD_NAME -n namespace — bash)
+
+uxpro-$ kubectl exec -it nginx-6799fc88d8-8r9nt bash
+kubectl exec [POD] [COMMAND] is DEPRECATED and will be removed in a future version. Use kubectl exec [POD] -- [COMMAND] instead.
+root@nginx-6799fc88d8-8r9nt:/# hostname 
+nginx-6799fc88d8-8r9nt
+root@nginx-6799fc88d8-8r9nt:/# 
+You can also the following command to avoid the “DEPRECATED” warning.
+
+uxpro-$ kubectl exec -it nginx-6799fc88d8-8r9nt -- bash
+root@nginx-6799fc88d8-8r9nt:/# 
+You can also explicitly mention the namespace of the pod. (Use “-n” flag to specify the namespace)
+
+uxpro-$ kubectl exec -it nginx-6799fc88d8-8r9nt -n default  -- bash 
+root@nginx-6799fc88d8-8r9nt:/# 

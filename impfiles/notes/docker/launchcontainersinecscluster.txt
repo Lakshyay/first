@@ -1,0 +1,70 @@
+
+Launching containers in ECS cluster
+Objective: To deploy a containerized PHP application using ECS. The
+application image in ECR will be used to deploy the application.
+As part of the demo, the following tasks will be performed:
+Task 1: Creating AWS ECS Cluster
+Task 2: Creating AWS ECS Task Definition
+Task 3: Launching Containers in AWS ECS clusters by creating tasks
+Prerequisite:
+AWS account with access to ECS and EC2 services
+Task 1 - Creating AWS ECS Cluster
+Step 1: In the AWS console, choose Amazon ECS service under the
+Compute services portfolio
+Step 2: Navigate to the clusters section in AWS ECS console and click on
+create cluster
+Step 3: Select cluster template, choose the EC2 Linux + Networking as
+the cluster type and Click on next
+Step 4: Under configure cluster, provide a name to the cluster. Let’s say
+“php-app-cluster”.
+Step 4: Choose to use on-demand instance of type t2.micro for the
+cluster. Now, specify the number of instances required in the cluster,
+provide 2 for this demo
+Step 5: Under key pair, choose an existing one, or you can create one
+before you create a cluster.
+Step 6: Choose the VPC in to which the cluster needs to be launched.
+You can very well create the cluster in the default VPC here and select
+more than one subnet to allow high availability.
+Step 7: Now for the container instance IAM role, you can choose an
+existing role or you may leave it blank.
+• This role will basically allow the ECS agents to communicate
+with the AWS ECS
+• In this module, leave it blank and allow AWS to create one
+on your behalf
+Step 8: Finally, click on create. ECS cluster with 2 EC2 instances will be
+created.
+Task 2- Creating AWS ECS Task Definition
+Step 1: Navigate to Task Definitions section of ECS and click on Create
+new Task Definition
+Step 2: Pick EC2 as the launch type and click on Next step
+Step 3: Under configure task and container definition, start populating
+the fields with values.
+• Provide a name to our task definition, say “php-app-task”, task
+role to be none as it is optional and not required here.
+• For Network mode select the bridge mode. Again, leave the Task
+execution role blank and AWS will create one on your behalf
+• Then, select Add container
+• Provide a name to the container, say php-app-container
+• Copy the image URI of the docker image that was pushed into the
+ECR repository in the previous demo and paste it in the field for
+image URL
+• Next the memory limits, choose hard limit with 128 MiB, which
+will be reserved for the container in the cluster
+• Use port 80 for port mapping for both our host and container, so
+keep it 80 80
+• Add the container definition and create the task definition
+Task definition will be created successfully.
+Task 3 - Launching Containers in AWS ECS clusters
+Step 1: In the task definition console, click on the task created in
+previous step and click on Actions and select run the task
+Step 2: Select the launch type as EC2, and select the cluster that is
+created in Task1
+Step 3: Keep the number of tasks to be 2 so that the 1-1 copy of the
+container will be getting deployed in both the EC2 instances of the
+cluster
+Step 4: Now run the task. If the task runs successfully, it will be viewed
+on the console and shows the count to be 2.
+Step 5: Check the PHP application by running the public IP/public DNS
+of the cluster instances with port 80.
+In this demonstration, you have learnt to deploy a sample PHP
+application on an ECS cluster.

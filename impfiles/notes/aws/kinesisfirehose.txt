@@ -1,0 +1,38 @@
+
+6
+LabGuide on Kinesis Data Firehose
+Objective: In this lab, we shall learn how to streamline the data from Firehose and store it in a S3
+bucket in a form of an object.
+Pre- requisite: Create a S3 bucket which will be used as a target.
+Step 1
+Select data firehose under kinesis services and click create delivery stream.
+Step 2
+Give a name for the delivery stream
+Step 3
+Select a source to send the records to the delivery stream
+Step 4
+If any transformations and conversions are required choose the enable option and configure
+accordingly.
+Step 5 Choose the destination as Amazon S3 bucket in which you wanted to store the data
+that’s streamed.
+Step 6
+Choose the buffer size and buffer interval to deliver the data records to S3 bucket and if
+compression is required make the required configuration setting.
+Step 7
+If encryption of the streamlined data and error logging during data ingestion is required you can
+enable them.
+Step 8
+Choose the cream IAM role that attaches the default policies of Kinesis Firehose and Click Next.
+Step 9 - The delivery stream would be created.
+Step 10 - Click on the delivery stream and test the data streamlining ingestion process by
+sending a sample data.
+PS: These steps will take some time to execute, you may need to wait for same.
+Step 11 - The demo sample data would be sent to the stream. This process takes a while.
+Step 12
+Click on Stop sending data to stop the streaming. You can monitor the data being ingested to
+the streamline using CloudWatch Dashboards.
+Step 13
+Navigate to the S3 bucket which is the destination and the streamlined data would be stored in
+a form of an object which can be viewed.
+Summary: Thus, in this lab, you have learnt how to streamline the data from Firehose and store
+it in a S3 bucket in a form of an object.

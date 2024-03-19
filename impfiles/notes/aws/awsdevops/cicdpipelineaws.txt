@@ -1,0 +1,145 @@
+
+1
+Implementing CI/CD pipeline in AWS
+Objective:
+Create a CI/CD pipeline in AWS to deploy a containerized PHP application
+on to AWS ECS.
+Prerequisites:
+• An AWS IAM account with access to CodeCommit, CodeBuild,
+CodePipeline, ECS and ECR
+• CICD role with AWS CodeCommitReadOnly and AmazonEC2Container
+RegistryFullAccess
+• AWS CLI/Git Bash configured with the IAM account secret key and
+access key
+• AWS CodeCommit credentials to clone and push code to AWS
+CodeCommit repository
+• An ECS cluster with the below the configuration
+Cluster template -> EC2 Linux + Networking
+Provisioning model -> on-demand instance
+EC2 instance type –> t2.small
+Number of instances -> 2
+All other values to default
+Step 1: Creating an ECR registry to store the build image
+• Navigate to ECR dashboard and click on create repository.
+• Enter the name for repository
+• Leave all other values to default
+• Click on create repository
+• The repository will be created and visible in the dashboard
+Step 2: Cloning the sample code from git hub
+• Open Git Bash
+• Clone the repository using the command
+git clone https://github.com/pbmamatha/ecs-pipeline-repo.git
+OR
+• Refer to this link added as Lab Artifact for Implementing CI/CD
+pipeline in AWS
+• Edit the buildspec file. Replace the existing authentication token with
+that of the ECR repository created in step 1. Also replace the
+REPOSITRY_URI with the ECR repository URL created in step 1.
+• Edit the imagedefinitions file. Replace the image URI with the image
+URL of the ECR repository created in step 1
+• Edit the task definition file. Replace the image URL with the URL of the
+ECR registry created and save.
+Step 3: Creating a code commit repository and pushing the sample
+code
+• Navigate to code commit dashboard. Click on create repository.
+• Enter the name of repository. Leave all other options to default and
+click on create.
+• The repository will be created and visible in the dashboard.
+• Copy HTTPS clone URL of the repository. Switch to the git bash
+prompt.
+• Paste the URL and click on enter.
+• Cloning starts. Enter the CodeCommit git credentials when prompted.
+• Empty repository will be cloned.
+• Copy the contents of the cloned git hub repository to the CodeCommit
+repo folder cp -r ecs-pipeline-repo/* ecr-ecs-pipeline-repo/
+• Change the directory to codecommit repository
+cd ecr-ecs-pipeline-repo/
+• Add the files, commit and push to the code commit repository
+• Verify the files by checking in the CodeCommit repository
+Step 4: Creating and verifying a CodeBuild project
+• Navigate to CodeBuild dashboard and click on create build project.
+• Enter the name for the build project. Leave other configurations under
+project configuration to default.
+• For source, select the source provider as code commit and then select
+the repository created in previous step.
+• Choose the branch as master.
+• Under Environment. Select the operating system as Amazon Linux 2.
+Runtime as standard and image as aws/codebuild/amazonlinux2-
+x86_64-standard:3.0 build image.
+• Enable the privileged option to build Docker images or your builds with
+elevated privileges.
+• For service role, choose existing service role, and then choose the ARN
+or enter the ARN of the role created for code build as part of the
+prerequisites.
+• Leave buildspec, batch configuration and artifacts to default.
+• Enable cloudwatch logs and click on create build project.
+• The build project will be created and visible in the dashboard.
+• Select the build project and click on start build.
+• The build process starts.
+• Upon successful completion of the build project, an image will be
+pushed to the ECR registry.
+Step 5: Creating an ECS Task definition and Service
+• Copy the contents of task definition file in the CodeCommit repository.
+• Navigate to ECS dashboard and click on the Task definitions
+• Click Create new task definition and select launch type compatibility as
+EC2. Click Next step.
+• Scroll down and click on configure via JSON.
+• Paste the task definition file contents. And save.
+• Click create. The task definition will be created.
+• Navigate to the ECS cluster created for this demo.
+• Under services, click on create.
+• Select the launch type as EC2. Choose the task definition created.
+• Give a name for the service and enter number of tasks as 2.
+• Configure Minimum healthy percentage as 50 and Maximum as 200.
+• Choose deployment as rolling and placement strategy as one task per
+host.
+• Click on Next step.
+• Leave all values to default.
+• Click Next step.
+• Review and create the service.
+• The service will be running.
+• To verify the service, we need to use the public IP address of either of
+the ECS instances.
+Step 6: Creating the pipeline
+• Navigate to code pipeline dashboard.
+• Click on create pipeline.
+• Give a name for the pipeline and click on Next.
+• Select the source provider as AWS code Commit.
+• Then, choose the repository name and branch name
+• Leave all other values to default and click on Next.
+• Select the build provider as Code Build and choose the CodeBuild
+project name created earlier.
+• Click Next.
+• Select the deploy provider as Amazon ECS.
+• Choose the ECS cluster created for this demo.
+• Choose the service created in the previous task.
+• Enter the name of image definitions file as imagedefinitions.json.
+• Click Next.
+• Review and create the pipeline. Pipeline will be created.
+Step 7: Testing the pipeline
+• Switch to CodeCommit screen and navigate to the CodeCommit
+repository created for this demo. Click on src and then index.php file.
+• Click Edit. Make some changes to the file. And commit the changes.
+• This triggers the code pipeline.
+
+Upon successful execution of the pipeline, verify the change. Refresh
+the web pages of the php application or access them once again.
+• Delete the ECS cluster created for this demonstration.
+Debugging tips:
+1) If the deploy stage is taking longer time to complete, check the events
+under service to know more. If the service is unable to place task because
+no container instance meet all of it requirements with the below message,
+then its probably because the deployment strategy is custom or anything
+other than one task per host/AZ balanced .
+2) If the app container is exiting with code 1 and you find
+“standard_init_linux.go:219: exec user process caused: exec format error”
+as error then, its probably for choosing the build image as
+To rectify the error, change the image of build environment to
+aws/codebuild/amazonlinux2-x86_64-standard:3.0 build image
+3) To check the container logs, connect to the ECS instance (enable port 22)
+and use the below commands:
+• docker ps -a (to list all containers)
+• docker logs <container id>
+Summary:
+Thus, in this demonstration you have learnt to create a CI/CD pipeline in
+AWS to deploy a containerized PHP applicationq
