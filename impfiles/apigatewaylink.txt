@@ -1,7 +1,0 @@
-
-ARN link:
-arn:aws:dynamodb:us-east-1:588777031681:table/calculcatorDataBase
-
-
-Api-gateway link:
-https://kfx2vrmmml.execute-api.us-east-1.amazonaws.com/dev
